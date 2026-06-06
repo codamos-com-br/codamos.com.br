@@ -27,28 +27,13 @@ const lastUpdateLabel = lastUpdate
   </div>
 </header>
 <div class="content">
-  <div class="infobar">
-    {
-      lastUpdate && (
+  {
+    lastUpdate && (
+      <div class="infobar">
         <div class="infobar__update">
           Última atualização:
           <time datetime={lastUpdateIso}>{lastUpdateLabel}</time>
         </div>
-      )
-    }
-    <div class="infobar__search">
-      <form action="/search/">
-        <input
-          type="search"
-          name="q"
-          placeholder="Buscar..."
-          aria-label="Buscar"
-        />
-        <button type="submit" aria-label="Buscar">
-          <svg role="presentation" focusable="false" width="15px" height="14px">
-            <use xlink:href="/assets/svg/svg-map.svg#search"></use>
-          </svg>
-        </button>
-      </form>
-    </div>
-  </div>
+      </div>
+    )
+  }

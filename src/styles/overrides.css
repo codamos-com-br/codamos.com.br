@@ -1,0 +1,42 @@
+/*
+ * Local overrides on top of the ported technews theme.css.
+ * Loaded after theme.css so these rules win.
+ */
+
+/*
+ * Large-screen centering fix.
+ *
+ * The theme lays out .content as a grid with the main column sized
+ * `minmax(auto, var(--main-col-width))`. The `auto` minimum lets that track
+ * grow to its content's min-content size — which, for the listing card grids
+ * and for unconstrained card/hero images, exceeds 50rem and blows the column
+ * out to the full viewport. (Post bodies are text with a small min-content, so
+ * they stayed centered — hence only listings/heroes were affected.)
+ *
+ * Switching the minimum to 0 caps the column at --main-col-width on wide
+ * screens, keeping content centered between the 1fr gutters. The min-width:0
+ * safeguards let the inner grid tracks shrink instead of forcing overflow.
+ */
+@media all and (min-width: 56.25em) {
+  .content {
+    grid-template-columns:
+      1fr
+      minmax(0, var(--main-col-width))
+      calc(var(--sidebar-width) + 1.2142857143rem)
+      1fr;
+  }
+}
+
+/* Allow grid items (cards) and their images to shrink within their track. */
+.l-grid,
+.l-grid > * {
+  min-width: 0;
+}
+
+.c-card {
+  min-width: 0;
+}
+
+.c-card__image img {
+  width: 100%;
+}
