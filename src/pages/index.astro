@@ -1,0 +1,25 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PostGrid from '../components/PostGrid.astro';
+import Sidebar from '../components/Sidebar.astro';
+import { getListablePosts } from '../lib/content';
+import { SITE, META, fillTemplate } from '../lib/site';
+
+const all = await getListablePosts();
+const posts = all.slice(0, SITE.postsPerPage);
+const lastUpdate = all[0]?.data.updated;
+const totalPages = Math.ceil(all.length / SITE.postsPerPage);
+const nextUrl = totalPages > 1 ? `/${SITE.pageName}/2/` : undefined;
+---
+
+<BaseLayout
+  title={fillTemplate(META.siteTitle, {})}
+  description="Codamos: blogs sobre desenvolvimento de software."
+  robots={META.robotsSite}
+  ogType="website"
+  nextUrl={nextUrl}
+  lastUpdate={lastUpdate}
+>
+  <PostGrid posts={posts} firstIsH1 nextUrl={nextUrl} />
+  <Sidebar />
+</BaseLayout>

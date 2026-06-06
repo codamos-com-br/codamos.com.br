@@ -1,0 +1,75 @@
+---
+/**
+ * Sidebar — ports technews partials/sidebar.hbs.
+ * Enabled blocks per theme.config: follow (Twitter + Telegram), newsletter, featured (2).
+ * Disabled in config: ads, authors list, tags cloud.
+ */
+import { SITE } from '../lib/site';
+import { getFeaturedPosts } from '../lib/content';
+
+const featured = await getFeaturedPosts(SITE.featuredPostsNumber);
+---
+
+<div class="sidebar">
+  <div class="sidebar__inner">
+    <section class="box">
+      <h3 class="box__title">Acompanhe</h3>
+      <div class="follow">
+        <a href={SITE.social.twitter} class="twitter" aria-label="Twitter">
+          <svg class="u-icon"><use xlink:href="/assets/svg/svg-map.svg#twitter"></use></svg>
+          Twitter
+        </a>
+        <a href={SITE.social.telegram} class="telegram" aria-label="Telegram">
+          <svg class="u-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M9.78 18.65l.28-4.23 7.68-6.92c.34-.31-.07-.46-.52-.19L7.74 13.3 3.64 12c-.88-.25-.89-.86.2-1.3l15.97-6.16c.73-.33 1.43.18 1.15 1.3l-2.72 12.81c-.19.91-.74 1.13-1.5.71L12.6 16.3l-1.99 1.93c-.23.23-.42.42-.83.42z"></path>
+          </svg>
+          Telegram
+        </a>
+      </div>
+    </section>
+
+    <section class="newsletter box box--gray">
+      <h3 class="box__title">Newsletter</h3>
+      <p class="newsletter__description">
+        Receba os novos artigos do codamos.com.br no seu e-mail.
+      </p>
+      <form
+        action="#"
+        style="text-align: right;"
+        onsubmit="return handleNewsletterFormSubmission(this)"
+      >
+        <input type="text" name="name" placeholder="Insira seu nome aqui" required />
+        <input type="email" name="email" placeholder="seuemail@provedor.com.br" required />
+        <button style="margin: 10px 0;" type="submit">Quero me inscrever!</button>
+      </form>
+    </section>
+
+    {
+      featured.length > 0 && (
+        <section class="box featured">
+          <h3 class="box__title">Destaques</h3>
+          <ul class="featured__container">
+            {featured.map((post) => (
+              <li class="featured__item">
+                {post.data.featuredImage?.src && (
+                  <a href={`/${post.data.slug}/`} class="featured__image-link">
+                    <img
+                      src={post.data.featuredImage.src}
+                      loading="lazy"
+                      alt={post.data.featuredImage.alt}
+                    />
+                  </a>
+                )}
+                <div>
+                  <a href={`/${post.data.slug}/`} class="featured__title">
+                    {post.data.title}
+                  </a>
+                </div>
+              </li>
+            ))}
+          </ul>
+        </section>
+      )
+    }
+  </div>
+</div>

@@ -1,0 +1,142 @@
+---
+/**
+ * GDPR cookie-consent popup (#13) — pt-br copy ported from Publii site.config gdpr.
+ * Persists choice in localStorage and exposes a tiny consent API that the
+ * Analytics (#12) and Disqus components subscribe to, so non-essential scripts
+ * stay blocked until the matching group is accepted.
+ *
+ * Groups: Obrigatórios (always on), Funcionalidades (functions),
+ *         Análise de tráfego (analytics), Marketing.
+ */
+const REVISION = '1';
+---
+
+<div id="cookie-consent" class="cookie-consent" hidden aria-live="polite">
+  <div class="cookie-consent__box" role="dialog" aria-labelledby="cookie-consent-title">
+    <h2 id="cookie-consent-title" class="cookie-consent__title">Este website utiliza cookies</h2>
+    <p class="cookie-consent__desc">
+      Selecione quais cookies você gostaria de habilitar utilizando as caixas de seleção abaixo;
+      este site utiliza cookies para examinar tráfego e atividades de usuários no site, para
+      marketing e outras funcionalidades relacionadas a redes sociais.
+    </p>
+    <form id="cookie-consent-form" class="cookie-consent__groups">
+      <label class="cookie-consent__group">
+        <input type="checkbox" checked disabled />
+        <span>Obrigatórios</span>
+      </label>
+      <label class="cookie-consent__group">
+        <input type="checkbox" name="functions" />
+        <span>Funcionalidades</span>
+      </label>
+      <label class="cookie-consent__group">
+        <input type="checkbox" name="analytics" />
+        <span>Análise de tráfego</span>
+      </label>
+      <label class="cookie-consent__group">
+        <input type="checkbox" name="marketing" />
+        <span>Marketing</span>
+      </label>
+    </form>
+    <div class="cookie-consent__actions">
+      <button type="button" id="cookie-reject-all" class="cookie-consent__btn">Rejeitar todos</button>
+      <button type="button" id="cookie-save" class="cookie-consent__btn">Salvar configurações</button>
+      <button type="button" id="cookie-accept-all" class="cookie-consent__btn cookie-consent__btn--primary">Aceitar todos</button>
+    </div>
+  </div>
+</div>
+<button id="cookie-settings-badge" class="cookie-consent__badge" hidden>Política de Cookies</button>
+
+<script is:inline define:vars={{ REVISION }}>
+  (function () {
+    var KEY = 'cookie-consent';
+    var DEFAULT = { functions: false, analytics: false, marketing: false };
+
+    function read() {
+      try {
+        var raw = JSON.parse(localStorage.getItem(KEY) || 'null');
+        if (!raw || raw.rev !== REVISION) return null;
+        return raw;
+      } catch (e) {
+        return null;
+      }
+    }
+
+    function broadcast(state) {
+      window.__cookieConsent = state;
+      window.dispatchEvent(new CustomEvent('consent-updated', { detail: state }));
+    }
+
+    function save(groups) {
+      var state = {
+        functions: !!groups.functions,
+        analytics: !!groups.analytics,
+        marketing: !!groups.marketing,
+        rev: REVISION,
+        ts: new Date().toISOString(),
+      };
+      localStorage.setItem(KEY, JSON.stringify(state));
+      broadcast(state);
+    }
+
+    // Expose a minimal API for subscribers (Analytics, Disqus).
+    window.cookieConsent = {
+      get: function () {
+        return window.__cookieConsent || read() || DEFAULT;
+      },
+      allows: function (group) {
+        return !!window.cookieConsent.get()[group];
+      },
+      onChange: function (cb) {
+        window.addEventListener('consent-updated', function (e) {
+          cb(e.detail);
+        });
+        var existing = read();
+        if (existing) cb(existing);
+      },
+    };
+
+    var banner = document.getElementById('cookie-consent');
+    var badge = document.getElementById('cookie-settings-badge');
+    var form = document.getElementById('cookie-consent-form');
+
+    function showBanner() {
+      banner.hidden = false;
+      badge.hidden = true;
+    }
+    function hideBanner() {
+      banner.hidden = true;
+      badge.hidden = false;
+    }
+
+    document.getElementById('cookie-accept-all').addEventListener('click', function () {
+      save({ functions: true, analytics: true, marketing: true });
+      hideBanner();
+    });
+    document.getElementById('cookie-reject-all').addEventListener('click', function () {
+      save({ functions: false, analytics: false, marketing: false });
+      hideBanner();
+    });
+    document.getElementById('cookie-save').addEventListener('click', function () {
+      var data = new FormData(form);
+      save({
+        functions: data.get('functions') === 'on',
+        analytics: data.get('analytics') === 'on',
+        marketing: data.get('marketing') === 'on',
+      });
+      hideBanner();
+    });
+    badge.addEventListener('click', showBanner);
+
+    var stored = read();
+    if (stored) {
+      // Restore checkbox states, keep banner hidden, re-broadcast for subscribers.
+      form.functions.checked = stored.functions;
+      form.analytics.checked = stored.analytics;
+      form.marketing.checked = stored.marketing;
+      hideBanner();
+      broadcast(stored);
+    } else {
+      showBanner();
+    }
+  })();
+</script>

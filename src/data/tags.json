@@ -1,0 +1,230 @@
+[
+  {
+    "id": "php",
+    "name": "php",
+    "slug": "php",
+    "description": ""
+  },
+  {
+    "id": "git",
+    "name": "git",
+    "slug": "git",
+    "description": ""
+  },
+  {
+    "id": "vim",
+    "name": "vim",
+    "slug": "vim",
+    "description": ""
+  },
+  {
+    "id": "produtividade",
+    "name": "produtividade",
+    "slug": "produtividade",
+    "description": ""
+  },
+  {
+    "id": "devlog",
+    "name": "devlog",
+    "slug": "devlog",
+    "description": ""
+  },
+  {
+    "id": "emulador-nes",
+    "name": "emulador-nes",
+    "slug": "emulador-nes",
+    "description": ""
+  },
+  {
+    "id": "c",
+    "name": "C",
+    "slug": "c",
+    "description": ""
+  },
+  {
+    "id": "javascript",
+    "name": "javascript",
+    "slug": "javascript",
+    "description": ""
+  },
+  {
+    "id": "gringo",
+    "name": "gringo",
+    "slug": "gringo",
+    "description": ""
+  },
+  {
+    "id": "rust",
+    "name": "rust",
+    "slug": "rust",
+    "description": ""
+  },
+  {
+    "id": "jogos",
+    "name": "jogos",
+    "slug": "jogos",
+    "description": ""
+  },
+  {
+    "id": "sokoban",
+    "name": "sokoban",
+    "slug": "sokoban",
+    "description": ""
+  },
+  {
+    "id": "net",
+    "name": ".net",
+    "slug": "net",
+    "description": ""
+  },
+  {
+    "id": "raylib",
+    "name": "raylib",
+    "slug": "raylib",
+    "description": ""
+  },
+  {
+    "id": "junior",
+    "name": "junior",
+    "slug": "junior",
+    "description": ""
+  },
+  {
+    "id": "lacrei",
+    "name": "lacrei",
+    "slug": "lacrei",
+    "description": ""
+  },
+  {
+    "id": "vagas",
+    "name": "vagas",
+    "slug": "vagas",
+    "description": ""
+  },
+  {
+    "id": "livro",
+    "name": "livro",
+    "slug": "livro",
+    "description": ""
+  },
+  {
+    "id": "carreira",
+    "name": "carreira",
+    "slug": "carreira",
+    "description": ""
+  },
+  {
+    "id": "pokemaobr",
+    "name": "pokemaobr",
+    "slug": "pokemaobr",
+    "description": ""
+  },
+  {
+    "id": "tecnica",
+    "name": "tecnica",
+    "slug": "tecnica",
+    "description": ""
+  },
+  {
+    "id": "principios",
+    "name": "principios",
+    "slug": "principios",
+    "description": ""
+  },
+  {
+    "id": "evento",
+    "name": "evento",
+    "slug": "evento",
+    "description": ""
+  },
+  {
+    "id": "phpeste",
+    "name": "phpeste",
+    "slug": "phpeste",
+    "description": ""
+  },
+  {
+    "id": "python",
+    "name": "python",
+    "slug": "python",
+    "description": ""
+  },
+  {
+    "id": "nes",
+    "name": "nes",
+    "slug": "nes",
+    "description": ""
+  },
+  {
+    "id": "node",
+    "name": "node",
+    "slug": "node",
+    "description": ""
+  },
+  {
+    "id": "mongodb",
+    "name": "mongodb",
+    "slug": "mongodb",
+    "description": ""
+  },
+  {
+    "id": "codigo-aberto",
+    "name": "código aberto",
+    "slug": "codigo-aberto",
+    "description": ""
+  },
+  {
+    "id": "engenharia-reversa",
+    "name": "engenharia reversa",
+    "slug": "engenharia-reversa",
+    "description": ""
+  },
+  {
+    "id": "ferramentas",
+    "name": "ferramentas",
+    "slug": "ferramentas",
+    "description": ""
+  },
+  {
+    "id": "podcast",
+    "name": "podcast",
+    "slug": "podcast",
+    "description": ""
+  },
+  {
+    "id": "typescript",
+    "name": "typescript",
+    "slug": "typescript",
+    "description": ""
+  },
+  {
+    "id": "phaser",
+    "name": "phaser",
+    "slug": "phaser",
+    "description": ""
+  },
+  {
+    "id": "mysql",
+    "name": "mysql",
+    "slug": "mysql",
+    "description": ""
+  },
+  {
+    "id": "docker",
+    "name": "docker",
+    "slug": "docker",
+    "description": ""
+  },
+  {
+    "id": "linux",
+    "name": "linux",
+    "slug": "linux",
+    "description": ""
+  },
+  {
+    "id": "ubuntu",
+    "name": "ubuntu",
+    "slug": "ubuntu",
+    "description": ""
+  }
+]

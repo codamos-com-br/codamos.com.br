@@ -1,0 +1,31 @@
+---
+/**
+ * Pagination — ports technews partials/pagination.hbs for DESC ordering.
+ * "prev" arrow → newer page (lower index), "next" → older page (higher index).
+ */
+export interface Props {
+  prevUrl?: string; // newer page
+  nextUrl?: string; // older page
+  extraClass?: string;
+}
+const { prevUrl, nextUrl, extraClass = '' } = Astro.props;
+---
+
+<nav class={`pagination ${extraClass}`.trim()}>
+  {
+    prevUrl && (
+      <a href={prevUrl} class="pagination__item pagination__item--prev">
+        <svg><use xlink:href="/assets/svg/svg-map.svg#arrow-prev"></use></svg>
+        Mais recentes
+      </a>
+    )
+  }
+  {
+    nextUrl && (
+      <a href={nextUrl} class="pagination__item pagination__item--next">
+        Mais antigos
+        <svg><use xlink:href="/assets/svg/svg-map.svg#arrow-next"></use></svg>
+      </a>
+    )
+  }
+</nav>

@@ -1,0 +1,81 @@
+---
+/** Post card (c-card) — ports index.hbs card markup. First card uses <h1>, rest <h5>. */
+import type { Post } from '../lib/content';
+import { getAuthor, getTag } from '../lib/content';
+import { formatDate, isoDate } from '../lib/format';
+
+export interface Props {
+  post: Post;
+  heading?: 'h1' | 'h5';
+}
+
+const { post, heading = 'h5' } = Astro.props;
+const data = post.data;
+const author = data.authors[0] ? await getAuthor(data.authors[0]) : undefined;
+const mainTag = data.mainTag ? await getTag(data.mainTag) : undefined;
+const href = `/${data.slug}/`;
+const img = data.featuredImage;
+---
+
+<article class="c-card">
+  <div class="c-card__wrapper">
+    {
+      img?.src && (
+        <a href={href} class="c-card__image">
+          <img
+            src={img.src}
+            srcset={img.srcset ?? undefined}
+            sizes={img.sizes ?? undefined}
+            loading="lazy"
+            alt={img.alt}
+          />
+        </a>
+      )
+    }
+    <header class="u-header">
+      {
+        heading === 'h1' ? (
+          <h1 class="c-card__title">
+            <a href={href}>{data.title}</a>
+          </h1>
+        ) : (
+          <h2 class="h5 c-card__title">
+            <a href={href}>{data.title}</a>
+          </h2>
+        )
+      }
+      <div class="u-header__meta u-small">
+        {
+          author?.data.avatar && (
+            <img
+              src={author.data.avatar}
+              loading="lazy"
+              class="u-header__avatar"
+              alt={author.data.name}
+            />
+          )
+        }
+        <div>
+          {
+            author && (
+              <a href={`/autor/${author.data.username}/`} title={author.data.name}>
+                {author.data.name}
+              </a>
+            )
+          }
+          <time datetime={isoDate(data.date)}>{formatDate(data.date)}</time>
+        </div>
+        {
+          mainTag && (
+            <a
+              href={`/tema/${mainTag.data.slug}/`}
+              class={img?.src ? 'c-card__tag u-tag' : 'u-tag'}
+            >
+              {mainTag.data.name}
+            </a>
+          )
+        }
+      </div>
+    </header>
+  </div>
+</article>

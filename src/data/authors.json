@@ -1,0 +1,74 @@
+[
+  {
+    "id": "nawarian",
+    "name": "Nawarian",
+    "username": "nawarian",
+    "email": "",
+    "website": "https://twitter.com/nawarian",
+    "avatar": "/media/website/De0e9ZVX_400x400.jpg",
+    "useGravatar": false,
+    "description": "<p><em>Staff engineer</em> em um dos 200 sites mais acessados do mundo, já foi gerente de equipe, programador, consultor e se especializou em PHP.</p>\n<p>Hoje Nawarian também se interessa por desenvolvimento de jogos e compõe o time de jogos do <span style=\"color: #3598db;\"><span style=\"text-decoration: underline;\"><strong><a href=\"https://nucleodetecnologia.com.br/\" target=\"_blank\" rel=\"noopener\" style=\"color: #3598db; text-decoration: underline;\">Núcleo de Tecnologia do MTST</a></strong></span>.</span></p>",
+    "metaTitle": "",
+    "metaDescription": ""
+  },
+  {
+    "id": "alexander-zlatkov",
+    "name": "Alexander Zlatkov",
+    "username": "alexander-zlatkov",
+    "email": "",
+    "website": "https://twitter.com/a_zlatkov",
+    "avatar": null,
+    "useGravatar": false,
+    "description": "Co-fundador & CEO na SessionStack",
+    "metaTitle": "",
+    "metaDescription": ""
+  },
+  {
+    "id": "rouan-wilsenach",
+    "name": "Rouan Wilsenach",
+    "username": "rouan-wilsenach",
+    "email": "",
+    "website": "https://www.rouanw.com/",
+    "avatar": "/media/website/rouan_wilsenach.webp",
+    "useGravatar": false,
+    "description": "Rouan é um engenheiro de software e líder técnico que ajuda a criar times de excelência e software de alta qualidade. Ele já trabalhou com várias tecnologias para empresas nos setores finanças, educação, lazer e energia (incluindo como consultor na Thoughtworks). O que importa pra ele é manter as coisas simples, construir times inclusivos e escrever sobre o que aprende.",
+    "metaTitle": "",
+    "metaDescription": "Rouan é um engenheiro de software e líder técnico que ajuda a criar times de excelência e software de alta qualidade. Ele já trabalhou com várias tecnologias para empresas nos setores finanças, educação, lazer e energia (incluindo como consultor na Thoughtworks). O que importa pra ele é manter as coisas simples, construir times inclusivos e escrever sobre o que aprende."
+  },
+  {
+    "id": "ana-hoverbear",
+    "name": "Ana Hoverbear",
+    "username": "ana-hoverbear",
+    "email": "operator@hoverbear.org",
+    "website": "https://hoverbear.org/",
+    "avatar": "/media/website/hoverbear.jpg",
+    "useGravatar": false,
+    "description": "<p>Ana é uma hacker que trabalha com os ecossistemas Rust e Nix. Ela vem do território Lək̓ʷəŋən ao Noroeste do Oceano Pacífico, e é Bacharel em Ciências da Computação pela University of Victoria. Ela, com sua companhia, cuida de um golden retriever chamado Nami.</p>",
+    "metaTitle": "",
+    "metaDescription": ""
+  },
+  {
+    "id": "pokemaobr",
+    "name": "Rodrigo \"Pokemaobr\" Cardoso",
+    "username": "pokemaobr",
+    "email": "",
+    "website": "https://twitter.com/pokemaobr",
+    "avatar": "/media/website/pokemaobr-rodrigo-cardoso.png",
+    "useGravatar": false,
+    "description": "Streamer (Live \"Coder\") na Twitch. Apresentador do talk show The Velopers, desenvolvedor e streamer. Organizador e curador de eventos de TI. Bacharel em matemática com MBA em SOA. Evangelista PHPSP e criador do PokePHP. O foco é ajudar a comunidade a disseminar conteúdos técnicos e piadas para devs.\n\nTwitter: https://twitter.com/pokemaobr\nlinkedin: https://linkedin/in/pokemaobr\nInstagram: https://instagram.com/pokemaobr\nTwitch: https://twitch.tv/pokemaobr\nGithub: https://github.com/pokemaobr",
+    "metaTitle": "",
+    "metaDescription": "Streamer (Live \"Coder\") na Twitch. Apresentador do talk show The Velopers, desenvolvedor e streamer. Organizador e curador de eventos de TI. Bacharel em matemática com MBA em SOA. Evangelista PHPSP e criador do PokePHP. O foco é ajudar a comunidade a disseminar conteúdos técnicos e piadas para devs."
+  },
+  {
+    "id": "renata-silva",
+    "name": "Renata",
+    "username": "renata-silva",
+    "email": "",
+    "website": "",
+    "avatar": "/media/website/perfil-renata-silva.jpg",
+    "useGravatar": false,
+    "description": "Servidora pública municipal a 21 anos, em transição de carreira para área de tecnologia. Filha, mãe, irmã e amiga, apaixonada por novos desafios.",
+    "metaTitle": "",
+    "metaDescription": ""
+  }
+]

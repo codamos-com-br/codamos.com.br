@@ -1,0 +1,48 @@
+---
+import type { GetStaticPaths } from 'astro';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PostGrid from '../../components/PostGrid.astro';
+import Sidebar from '../../components/Sidebar.astro';
+import { getListablePosts } from '../../lib/content';
+import { SITE, META, fillTemplate } from '../../lib/site';
+
+export const getStaticPaths = (async () => {
+  const all = await getListablePosts();
+  const totalPages = Math.ceil(all.length / SITE.postsPerPage);
+  const paths = [];
+  // Page 1 lives at `/`; generate pages 2..N under /pagina/<n>/.
+  for (let page = 2; page <= totalPages; page++) {
+    const start = (page - 1) * SITE.postsPerPage;
+    paths.push({
+      params: { page: String(page) },
+      props: {
+        posts: all.slice(start, start + SITE.postsPerPage),
+        page,
+        totalPages,
+      },
+    });
+  }
+  return paths;
+}) satisfies GetStaticPaths;
+
+const { posts, page, totalPages } = Astro.props as {
+  posts: Awaited<ReturnType<typeof getListablePosts>>;
+  page: number;
+  totalPages: number;
+};
+
+const prevUrl = page === 2 ? '/' : `/${SITE.pageName}/${page - 1}/`;
+const nextUrl = page < totalPages ? `/${SITE.pageName}/${page + 1}/` : undefined;
+---
+
+<BaseLayout
+  title={fillTemplate(META.siteTitle, {})}
+  description="Codamos: blogs sobre desenvolvimento de software."
+  robots={META.robotsSite}
+  canonical={`/${SITE.pageName}/${page}/`}
+  prevUrl={prevUrl}
+  nextUrl={nextUrl}
+>
+  <PostGrid posts={posts} prevUrl={prevUrl} nextUrl={nextUrl} />
+  <Sidebar />
+</BaseLayout>

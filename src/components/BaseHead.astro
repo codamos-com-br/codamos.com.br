@@ -1,0 +1,129 @@
+---
+/**
+ * <head> for every page — SEO/metadata parity with Publii head.hbs (#10),
+ * plus head-level third-party integrations (#12) and theme-color (metaTabColors).
+ */
+import { SITE } from '../lib/site';
+import '../styles/theme.css';
+
+export interface Props {
+  title: string;
+  description?: string;
+  robots?: string;
+  canonical?: string; // absolute or path; defaults to current URL
+  ogType?: 'website' | 'article';
+  image?: string; // path or absolute
+  prevUrl?: string;
+  nextUrl?: string;
+  withGalleryCss?: boolean;
+  jsonLd?: Record<string, unknown> | Record<string, unknown>[];
+  publishedTime?: string;
+  modifiedTime?: string;
+  author?: string;
+}
+
+const {
+  title,
+  description = '',
+  robots = 'index, follow',
+  canonical,
+  ogType = 'website',
+  image,
+  prevUrl,
+  nextUrl,
+  withGalleryCss = false,
+  jsonLd,
+  publishedTime,
+  modifiedTime,
+  author,
+} = Astro.props;
+
+const abs = (p?: string) =>
+  !p ? undefined : p.startsWith('http') ? p : new URL(p, SITE.domain).href;
+
+const canonicalUrl = abs(canonical) ?? new URL(Astro.url.pathname, SITE.domain).href;
+const ogImage = abs(image ?? SITE.ogImage);
+---
+
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+<title>{title}</title>
+{description && <meta name="description" content={description} />}
+<meta name="robots" content={robots} />
+<meta name="generator" content={Astro.generator} />
+
+<link rel="canonical" href={canonicalUrl} />
+
+<!-- theme-color (metaTabColors plugin) -->
+<meta name="theme-color" content={SITE.themeColorLight} media="(prefers-color-scheme: light)" />
+<meta name="theme-color" content={SITE.themeColorDark} media="(prefers-color-scheme: dark)" />
+
+<!-- Feeds -->
+<link rel="alternate" type="application/rss+xml" title={SITE.displayName} href={new URL('/feed.xml', SITE.domain).href} />
+<link rel="alternate" type="application/json" title={SITE.displayName} href={new URL('/feed.json', SITE.domain).href} />
+
+<!-- OpenGraph -->
+<meta property="og:site_name" content={SITE.displayName} />
+<meta property="og:type" content={ogType} />
+<meta property="og:title" content={title} />
+{description && <meta property="og:description" content={description} />}
+<meta property="og:url" content={canonicalUrl} />
+<meta property="og:locale" content={SITE.locale} />
+{ogImage && <meta property="og:image" content={ogImage} />}
+{ogType === 'article' && publishedTime && <meta property="article:published_time" content={publishedTime} />}
+{ogType === 'article' && modifiedTime && <meta property="article:modified_time" content={modifiedTime} />}
+{ogType === 'article' && author && <meta property="article:author" content={author} />}
+
+<!-- Twitter card -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:site" content={`@${SITE.twitterUsername}`} />
+<meta name="twitter:title" content={title} />
+{description && <meta name="twitter:description" content={description} />}
+{ogImage && <meta name="twitter:image" content={ogImage} />}
+
+{prevUrl && <link rel="prev" href={abs(prevUrl)} />}
+{nextUrl && <link rel="next" href={abs(nextUrl)} />}
+
+<link rel="shortcut icon" href={SITE.favicon} type={SITE.faviconType} />
+
+<!-- font-pair-0: system font stack (no web fonts, matches technews fonts.hbs) -->
+<style>
+  :root {
+    --body-font: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu,
+      Cantarell, 'Fira Sans', 'Droid Sans', 'Helvetica Neue', Arial, sans-serif,
+      'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
+    --heading-font: var(--body-font);
+    --post-entry-font: var(--body-font);
+    --logo-font: var(--body-font);
+    --menu-font: var(--body-font);
+  }
+</style>
+
+{withGalleryCss && <link rel="stylesheet" href="/assets/css/photoswipe.css" />}
+
+{jsonLd && (
+  <script
+    type="application/ld+json"
+    is:inline
+    set:html={JSON.stringify(jsonLd)}
+  />
+)}
+
+<!-- Newsletter submit handler (ported from Publii customHeadCode) -->
+<script is:inline define:vars={{ endpoint: SITE.newsletterEndpoint }}>
+  function handleNewsletterFormSubmission(self) {
+    var name = self.querySelector('input[name=name]').value;
+    var email = self.querySelector('input[name=email]').value;
+    fetch(endpoint, {
+      method: 'PUT',
+      headers: { 'Content-type': 'application/json' },
+      body: JSON.stringify({ name: name, email: email, createdAt: new Date().toISOString() }),
+    }).then(function () {
+      window.alert('Obrigado por se inscrever em nossa newsletter!');
+    });
+    return false;
+  }
+  window.handleNewsletterFormSubmission = handleNewsletterFormSubmission;
+</script>

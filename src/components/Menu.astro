@@ -1,0 +1,43 @@
+---
+/** Main nav — ports technews partials/menu.hbs markup + classes. */
+import { MAIN_MENU } from '../lib/menu';
+---
+
+<nav class="navbar">
+  <button
+    class="navbar__toggle"
+    aria-label="Menu"
+    aria-haspopup="true"
+    aria-expanded="false"
+  >
+    <span class="navbar__toggle-box">
+      <span class="navbar__toggle-inner">Menu</span>
+    </span>
+  </button>
+  <ul class="navbar__menu">
+    {
+      MAIN_MENU.map((item) => (
+        <li class={item.items ? 'has-submenu' : undefined}>
+          <a
+            href={item.href}
+            title={item.title}
+            aria-haspopup={item.items ? 'true' : undefined}
+          >
+            {item.label}
+          </a>
+          {item.items && (
+            <ul class="navbar__submenu level-1" aria-hidden="true">
+              {item.items.map((sub) => (
+                <li>
+                  <a href={sub.href} title={sub.title}>
+                    {sub.label}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          )}
+        </li>
+      ))
+    }
+  </ul>
+</nav>

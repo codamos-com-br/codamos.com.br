@@ -1,0 +1,48 @@
+---
+/**
+ * Consent-gated third-party loaders (#12 + #13):
+ *   - Google Analytics 4 (gtag, anonymize IP) -> 'analytics' group
+ *   - Google AdSense loader                    -> 'marketing' group
+ * Both stay blocked until the matching cookie-consent group is accepted.
+ */
+import { SITE } from '../lib/site';
+---
+
+<script is:inline define:vars={{ ga4: SITE.ga4Id, adsense: SITE.adsenseClient }}>
+  (function () {
+    function loadScript(src, attrs) {
+      var s = document.createElement('script');
+      s.async = true;
+      s.src = src;
+      if (attrs) Object.keys(attrs).forEach(function (k) { s.setAttribute(k, attrs[k]); });
+      document.head.appendChild(s);
+      return s;
+    }
+
+    var loaded = { analytics: false, marketing: false };
+
+    function apply(state) {
+      if (state.analytics && !loaded.analytics) {
+        loaded.analytics = true;
+        loadScript('https://www.googletagmanager.com/gtag/js?id=' + ga4);
+        window.dataLayer = window.dataLayer || [];
+        window.gtag = function () { window.dataLayer.push(arguments); };
+        window.gtag('js', new Date());
+        window.gtag('config', ga4, { anonymize_ip: true });
+      }
+      if (state.marketing && !loaded.marketing) {
+        loaded.marketing = true;
+        loadScript(
+          'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=' + adsense,
+          { crossorigin: 'anonymous' }
+        );
+      }
+    }
+
+    if (window.cookieConsent) {
+      window.cookieConsent.onChange(apply);
+    } else {
+      window.addEventListener('consent-updated', function (e) { apply(e.detail); });
+    }
+  })();
+</script>
