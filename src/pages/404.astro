@@ -1,0 +1,15 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Sidebar from '../components/Sidebar.astro';
+import { META, fillTemplate } from '../lib/site';
+---
+
+<BaseLayout title={fillTemplate(META.errorTitle, {})} robots={META.robotsError}>
+  <main class="main">
+    <div class="page">
+      <h1 class="page__title box__title">Página não encontrada</h1>
+      <p>A página que você procura não existe ou foi movida. Tente buscar pelo conteúdo ou volte à <a href="/">página inicial</a>.</p>
+    </div>
+  </main>
+  <Sidebar />
+</BaseLayout>

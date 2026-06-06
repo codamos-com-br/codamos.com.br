@@ -1,0 +1,14 @@
+---
+/** Author bio box — ports the post.hbs displayAuthorBio block. */
+import type { Author } from '../lib/content';
+const { author } = Astro.props as { author: Author };
+const d = author.data;
+---
+
+<div class="post__bio box">
+  {d.avatar && <img class="u-author__avatar" src={d.avatar} loading="lazy" alt={d.name} />}
+  <div>
+    <h4 class="h6"><a href={`/autor/${d.username}/`} title={d.name}>{d.name}</a></h4>
+    {d.description && <p set:html={d.description} />}
+  </div>
+</div>

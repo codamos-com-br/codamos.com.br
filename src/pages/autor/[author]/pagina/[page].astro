@@ -1,0 +1,61 @@
+---
+import type { GetStaticPaths } from 'astro';
+import BaseLayout from '../../../../layouts/BaseLayout.astro';
+import Listing from '../../../../components/Listing.astro';
+import AuthorHeader from '../../../../components/AuthorHeader.astro';
+import Sidebar from '../../../../components/Sidebar.astro';
+import { getNonEmptyAuthors, getPostsByAuthor, type Author } from '../../../../lib/content';
+import { SITE, META, fillTemplate } from '../../../../lib/site';
+
+export const getStaticPaths = (async () => {
+  const authors = await getNonEmptyAuthors();
+  const paths = [];
+  for (const author of authors) {
+    const posts = await getPostsByAuthor(author.data.username);
+    const totalPages = Math.ceil(posts.length / SITE.authorsPostsPerPage);
+    for (let page = 2; page <= totalPages; page++) {
+      const start = (page - 1) * SITE.authorsPostsPerPage;
+      paths.push({
+        params: { author: author.data.username, page: String(page) },
+        props: {
+          author,
+          count: posts.length,
+          page,
+          totalPages,
+          posts: posts.slice(start, start + SITE.authorsPostsPerPage),
+        },
+      });
+    }
+  }
+  return paths;
+}) satisfies GetStaticPaths;
+
+const { author, count, page, totalPages, posts } = Astro.props as {
+  author: Author;
+  count: number;
+  page: number;
+  totalPages: number;
+  posts: Awaited<ReturnType<typeof getPostsByAuthor>>;
+};
+
+const base = `/autor/${author.data.username}`;
+const prevUrl = page === 2 ? `${base}/` : `${base}/${SITE.pageName}/${page - 1}/`;
+const nextUrl = page < totalPages ? `${base}/${SITE.pageName}/${page + 1}/` : undefined;
+const description =
+  author.data.metaDescription ||
+  fillTemplate(META.authorDescription, { authorname: author.data.name });
+---
+
+<BaseLayout
+  title={author.data.metaTitle || fillTemplate(META.authorTitle, { authorname: author.data.name })}
+  description={description}
+  robots={META.robotsAuthors}
+  canonical={`${base}/${SITE.pageName}/${page}/`}
+  prevUrl={prevUrl}
+  nextUrl={nextUrl}
+>
+  <Listing posts={posts} prevUrl={prevUrl} nextUrl={nextUrl}>
+    <AuthorHeader author={author} count={count} />
+  </Listing>
+  <Sidebar />
+</BaseLayout>

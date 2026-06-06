@@ -1,0 +1,33 @@
+---
+/** Related posts (3 by shared tags) — ports the post.hbs displayRelatedPosts block. */
+import type { Post } from '../lib/content';
+import { formatDate, isoDate } from '../lib/format';
+const { posts } = Astro.props as { posts: Post[] };
+---
+
+<div class="post__related box">
+  <h3 class="box__title">Posts relacionados</h3>
+  <div class="post__related-wrap">
+    {
+      posts.map((post) => (
+        <figure class="post__related-item">
+          {post.data.featuredImage?.src && (
+            <a href={`/${post.data.slug}/`} class="c-card__image">
+              <img src={post.data.featuredImage.src} loading="lazy" alt={post.data.featuredImage.alt} />
+            </a>
+          )}
+          <figcaption>
+            <h4 class="post__related-title">
+              <a href={`/${post.data.slug}/`} class="inverse">
+                {post.data.title}
+              </a>
+            </h4>
+            <time datetime={isoDate(post.data.date)} class="u-small">
+              {formatDate(post.data.date)}
+            </time>
+          </figcaption>
+        </figure>
+      ))
+    }
+  </div>
+</div>

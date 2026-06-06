@@ -1,0 +1,39 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Sidebar from '../../components/Sidebar.astro';
+import { getNonEmptyTags } from '../../lib/content';
+import { META, fillTemplate } from '../../lib/site';
+
+const tags = await getNonEmptyTags();
+---
+
+<BaseLayout
+  title={fillTemplate(META.tagsTitle, {})}
+  description="Todos os temas do codamos.com.br."
+  robots={META.robotsTagsList}
+>
+  <main class="main">
+    <div class="page">
+      <h1 class="page__title box__title">Tags <sup>({tags.length})</sup></h1>
+    </div>
+    <div class="l-grid l-grid--2col-1-4">
+      {
+        tags.map(({ tag, count }) => (
+          <article class="c-card">
+            <div class="c-card__wrapper">
+              <header class="u-header">
+                <h2 class="h5 c-card__title">
+                  <a href={`/tema/${tag.data.slug}/`}>{tag.data.name}</a>
+                </h2>
+                <div class="u-header__meta u-small">
+                  {count} {count === 1 ? 'post' : 'posts'}
+                </div>
+              </header>
+            </div>
+          </article>
+        ))
+      }
+    </div>
+  </main>
+  <Sidebar />
+</BaseLayout>

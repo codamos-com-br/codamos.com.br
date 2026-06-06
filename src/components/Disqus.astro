@@ -1,0 +1,71 @@
+---
+/**
+ * Disqus comments — ports technews partials/disqus.hbs (lazy IntersectionObserver
+ * load), but gated on the 'functions' cookie-consent group (#13).
+ */
+import { SITE } from '../lib/site';
+
+export interface Props {
+  url: string; // absolute canonical
+  identifier: string | number; // Publii post id
+}
+const { url, identifier } = Astro.props;
+---
+
+<div id="disqus_thread"></div>
+<script
+  is:inline
+  define:vars={{ shortname: SITE.disqusShortname, pageUrl: url, pageId: String(identifier) }}
+>
+  (function () {
+    window.disqus_config = function () {
+      this.page.url = pageUrl;
+      this.page.identifier = pageId;
+    };
+    var el = document.getElementById('disqus_thread');
+    var injected = false;
+
+    function inject() {
+      if (injected) return;
+      injected = true;
+      var d = document,
+        s = d.createElement('script');
+      s.src = 'https://' + shortname.trim() + '.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    }
+
+    function maybeLoad() {
+      if (!window.cookieConsent || !window.cookieConsent.allows('functions')) return;
+      if ('IntersectionObserver' in window) {
+        var io = new IntersectionObserver(
+          function (entries, observer) {
+            entries.forEach(function (entry) {
+              if (entry.intersectionRatio >= 0.1) {
+                inject();
+                observer.unobserve(entry.target);
+              }
+            });
+          },
+          { threshold: [0, 1] }
+        );
+        io.observe(el);
+      } else {
+        inject();
+      }
+    }
+
+    if (window.cookieConsent) {
+      window.cookieConsent.onChange(function (state) {
+        if (state.functions) maybeLoad();
+      });
+    }
+    window.addEventListener('consent-updated', function (e) {
+      if (e.detail && e.detail.functions) maybeLoad();
+    });
+  })();
+</script>
+<noscript
+  >Por favor, habilite o JavaScript para ver os
+  <a href="https://disqus.com/?ref_noscript" rel="nofollow">comentários powered by Disqus.</a></noscript
+>

@@ -1,0 +1,52 @@
+---
+import type { GetStaticPaths } from 'astro';
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import Listing from '../../../components/Listing.astro';
+import AuthorHeader from '../../../components/AuthorHeader.astro';
+import Sidebar from '../../../components/Sidebar.astro';
+import { getNonEmptyAuthors, getPostsByAuthor, type Author } from '../../../lib/content';
+import { SITE, META, fillTemplate } from '../../../lib/site';
+
+export const getStaticPaths = (async () => {
+  // displayEmptyAuthors:false — only authors with listable posts.
+  const authors = await getNonEmptyAuthors();
+  const paths = [];
+  for (const author of authors) {
+    const posts = await getPostsByAuthor(author.data.username);
+    paths.push({
+      params: { author: author.data.username },
+      props: {
+        author,
+        count: posts.length,
+        posts: posts.slice(0, SITE.authorsPostsPerPage),
+        totalPages: Math.ceil(posts.length / SITE.authorsPostsPerPage),
+      },
+    });
+  }
+  return paths;
+}) satisfies GetStaticPaths;
+
+const { author, count, posts, totalPages } = Astro.props as {
+  author: Author;
+  count: number;
+  posts: Awaited<ReturnType<typeof getPostsByAuthor>>;
+  totalPages: number;
+};
+
+const nextUrl = totalPages > 1 ? `/autor/${author.data.username}/${SITE.pageName}/2/` : undefined;
+const description =
+  author.data.metaDescription ||
+  fillTemplate(META.authorDescription, { authorname: author.data.name });
+---
+
+<BaseLayout
+  title={author.data.metaTitle || fillTemplate(META.authorTitle, { authorname: author.data.name })}
+  description={description}
+  robots={META.robotsAuthors}
+  nextUrl={nextUrl}
+>
+  <Listing posts={posts} nextUrl={nextUrl}>
+    <AuthorHeader author={author} count={count} />
+  </Listing>
+  <Sidebar />
+</BaseLayout>

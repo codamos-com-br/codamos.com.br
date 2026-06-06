@@ -1,0 +1,26 @@
+---
+/** Author listing header — ports the author.hbs .page block (avatar, name, bio, website). */
+import type { Author } from '../lib/content';
+const { author, count } = Astro.props as { author: Author; count: number };
+const d = author.data;
+---
+
+<div class="page">
+  {d.avatar && <img src={d.avatar} loading="eager" class="u-author__avatar" alt={d.name} />}
+  <div>
+    <h1 class="page__title box__title">{d.name} <sup>({count})</sup></h1>
+    {d.description && <p set:html={d.description} />}
+    {
+      d.website && (
+        <p class="u-author__website">
+          <svg height="20" width="20" aria-hidden="true" stroke="var(--gray-2)" stroke-width="2">
+            <use xlink:href="/assets/svg/svg-map.svg#website"></use>
+          </svg>
+          <a href={d.website} target="_blank" rel="nofollow noreferrer noopener">
+            Visitar website
+          </a>
+        </p>
+      )
+    }
+  </div>
+</div>

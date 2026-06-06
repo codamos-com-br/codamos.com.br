@@ -1,0 +1,162 @@
+---
+import type { GetStaticPaths } from 'astro';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Sidebar from '../components/Sidebar.astro';
+import ShareButtons from '../components/ShareButtons.astro';
+import AuthorBio from '../components/AuthorBio.astro';
+import PostNav from '../components/PostNav.astro';
+import RelatedPosts from '../components/RelatedPosts.astro';
+import Disqus from '../components/Disqus.astro';
+import Photoswipe from '../components/Photoswipe.astro';
+import {
+  getRenderablePosts,
+  getAuthor,
+  getTag,
+  getRelatedPosts,
+  getAdjacentPosts,
+  type Post,
+} from '../lib/content';
+import { SITE, META, fillTemplate } from '../lib/site';
+import { formatDate, isoDate } from '../lib/format';
+
+export const getStaticPaths = (async () => {
+  const posts = await getRenderablePosts();
+  return posts.map((post) => ({ params: { slug: post.data.slug }, props: { post } }));
+}) satisfies GetStaticPaths;
+
+const { post } = Astro.props as { post: Post };
+const d = post.data;
+
+const author = d.authors[0] ? await getAuthor(d.authors[0]) : undefined;
+const mainTag = d.mainTag ? await getTag(d.mainTag) : undefined;
+const related = await getRelatedPosts(post, SITE.relatedPostsNumber);
+const { prev, next } = await getAdjacentPosts(post);
+
+const isAlternative = d.template === 'alternative';
+const hasGallery = d.html.includes('class="gallery');
+
+const postUrl = new URL(`/${d.slug}/`, SITE.domain).href;
+const canonical = d.canonicalUrl
+  ? d.canonicalUrl.startsWith('http')
+    ? d.canonicalUrl
+    : `/${d.canonicalUrl.replace(/^\/|\/$/g, '')}/`
+  : undefined;
+const title = d.metaTitle || fillTemplate(META.postTitle, { posttitle: d.title });
+const description = d.metaDesc || d.excerpt;
+const robots = d.metaRobots || META.robotsPost;
+const ogImage = d.featuredImage?.src ?? SITE.ogImage;
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'BlogPosting',
+  headline: d.title,
+  description,
+  url: postUrl,
+  datePublished: d.date.toISOString(),
+  dateModified: d.updated.toISOString(),
+  ...(d.featuredImage?.src
+    ? { image: new URL(d.featuredImage.src, SITE.domain).href }
+    : {}),
+  ...(author ? { author: { '@type': 'Person', name: author.data.name } } : {}),
+  publisher: {
+    '@type': 'Organization',
+    name: SITE.displayName,
+    logo: { '@type': 'ImageObject', url: new URL(SITE.logo, SITE.domain).href },
+  },
+  mainEntityOfPage: { '@type': 'WebPage', '@id': postUrl },
+};
+---
+
+<BaseLayout
+  title={title}
+  description={description}
+  robots={robots}
+  canonical={canonical}
+  ogType="article"
+  image={ogImage}
+  withGalleryCss={hasGallery}
+  publishedTime={d.date.toISOString()}
+  modifiedTime={d.updated.toISOString()}
+  author={author?.data.name}
+  jsonLd={jsonLd}
+>
+  <main class={isAlternative ? 'main main--full' : 'main'}>
+    <article class="post" data-pagefind-body>
+      {
+        d.featuredImage?.src && (
+          <figure class="post__featured-image">
+            <img
+              src={d.featuredImage.src}
+              srcset={d.featuredImage.srcset ?? undefined}
+              sizes={d.featuredImage.sizes ?? undefined}
+              loading="eager"
+              alt={d.featuredImage.alt}
+            />
+            {(d.featuredImage.caption || d.featuredImage.credits) && (
+              <figcaption>
+                {d.featuredImage.caption}
+                <span class="fig-credits">{d.featuredImage.credits}</span>
+              </figcaption>
+            )}
+          </figure>
+        )
+      }
+
+      <header class="u-header post__header">
+        <h1 data-pagefind-meta="title">{d.title}</h1>
+        <div class="u-header__meta u-small">
+          {
+            author?.data.avatar && (
+              <img src={author.data.avatar} loading="eager" class="u-header__avatar" alt={author.data.name} />
+            )
+          }
+          <div>
+            {
+              author && (
+                <a href={`/autor/${author.data.username}/`} title={author.data.name}>
+                  {author.data.name}
+                </a>
+              )
+            }
+            <time datetime={isoDate(d.date)}>{formatDate(d.date)}</time>
+            {
+              mainTag && (
+                <a href={`/tema/${mainTag.data.slug}/`} class="u-tag">
+                  {mainTag.data.name}
+                </a>
+              )
+            }
+          </div>
+        </div>
+      </header>
+
+      <div class="post__entry u-inner" set:html={d.html} />
+
+      <aside class="post__aside">
+        <div class="post__last-updated u-small">
+          Última atualização em {formatDate(d.updated)}
+        </div>
+        <div class="post__share">
+          <ShareButtons
+            url={postUrl}
+            title={d.title}
+            image={d.featuredImage ? new URL(d.featuredImage.src, SITE.domain).href : undefined}
+          />
+        </div>
+      </aside>
+
+      <footer class="post__footer">
+        {author && <AuthorBio author={author} />}
+        {(prev || next) && <PostNav prev={prev} next={next} />}
+        {related.length > 0 && <RelatedPosts posts={related} />}
+      </footer>
+    </article>
+
+    <div class="comments box">
+      <h3 class="box__title">Comentários</h3>
+      <Disqus url={postUrl} identifier={d.postId} />
+    </div>
+  </main>
+  {!isAlternative && <Sidebar />}
+  {hasGallery && <Photoswipe />}
+</BaseLayout>

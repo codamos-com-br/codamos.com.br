@@ -1,0 +1,51 @@
+---
+import type { GetStaticPaths } from 'astro';
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import Listing from '../../../components/Listing.astro';
+import Sidebar from '../../../components/Sidebar.astro';
+import { getNonEmptyTags, getPostsByTag, type Tag } from '../../../lib/content';
+import { SITE, META, fillTemplate } from '../../../lib/site';
+
+export const getStaticPaths = (async () => {
+  // displayEmptyTags:false — only generate tags that have listable posts.
+  const tags = await getNonEmptyTags();
+  const paths = [];
+  for (const { tag, count } of tags) {
+    const posts = await getPostsByTag(tag.data.slug);
+    paths.push({
+      params: { tag: tag.data.slug },
+      props: {
+        tag,
+        count,
+        posts: posts.slice(0, SITE.tagsPostsPerPage),
+        totalPages: Math.ceil(posts.length / SITE.tagsPostsPerPage),
+      },
+    });
+  }
+  return paths;
+}) satisfies GetStaticPaths;
+
+const { tag, count, posts, totalPages } = Astro.props as {
+  tag: Tag;
+  count: number;
+  posts: Awaited<ReturnType<typeof getPostsByTag>>;
+  totalPages: number;
+};
+
+const nextUrl = totalPages > 1 ? `/tema/${tag.data.slug}/${SITE.pageName}/2/` : undefined;
+---
+
+<BaseLayout
+  title={fillTemplate(META.tagTitle, { tagname: tag.data.name })}
+  description={tag.data.description || `Artigos sobre ${tag.data.name}.`}
+  robots={META.robotsTags}
+  nextUrl={nextUrl}
+>
+  <Listing posts={posts} nextUrl={nextUrl}>
+    <div class="page u-author">
+      <h1 class="page__title box__title">{tag.data.name} <sup>({count})</sup></h1>
+      {tag.data.description && <p>{tag.data.description}</p>}
+    </div>
+  </Listing>
+  <Sidebar />
+</BaseLayout>

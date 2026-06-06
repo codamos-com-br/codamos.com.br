@@ -1,0 +1,35 @@
+---
+/** Prev/next post navigation — ports the post.hbs displayPostNavigation block. */
+import type { Post } from '../lib/content';
+const { prev, next } = Astro.props as { prev: Post | null; next: Post | null };
+const xs = (p: Post) => p.data.featuredImage?.src;
+---
+
+<nav class="post__nav box">
+  {
+    prev && (
+      <div class="post__nav__prev">
+        <a href={`/${prev.data.slug}/`} class="post__nav__link" rel="prev">
+          {xs(prev) && <img src={xs(prev)} loading="lazy" alt={prev.data.featuredImage!.alt} />}
+          <div class="u-small">
+            Anterior
+            <h5>{prev.data.title}</h5>
+          </div>
+        </a>
+      </div>
+    )
+  }
+  {
+    next && (
+      <div class="post__nav__next">
+        <a href={`/${next.data.slug}/`} class="post__nav__link" rel="next">
+          <div class="u-small">
+            Próximo
+            <h5>{next.data.title}</h5>
+          </div>
+          {xs(next) && <img src={xs(next)} loading="lazy" alt={next.data.featuredImage!.alt} />}
+        </a>
+      </div>
+    )
+  }
+</nav>

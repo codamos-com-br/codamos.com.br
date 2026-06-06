@@ -1,0 +1,69 @@
+---
+/** Share buttons — ports technews partials/share-buttons.hbs (enabled networks only). */
+import { SITE } from '../lib/site';
+
+export interface Props {
+  url: string; // absolute
+  title: string;
+  image?: string; // absolute
+}
+const { url, title, image } = Astro.props;
+const e = encodeURIComponent;
+---
+
+<a
+  href={`https://www.facebook.com/sharer/sharer.php?u=${e(url)}`}
+  class="js-share facebook"
+  rel="nofollow noopener noreferrer"
+  aria-label="Compartilhar no Facebook"
+>
+  <svg class="u-icon"><use xlink:href="/assets/svg/svg-map.svg#facebook"></use></svg>
+</a>
+<a
+  href={`https://twitter.com/share?url=${e(url)}&via=${e(SITE.twitterShareName)}&text=${e(title)}`}
+  class="js-share twitter"
+  rel="nofollow noopener noreferrer"
+  aria-label="Compartilhar no Twitter"
+>
+  <svg class="u-icon"><use xlink:href="/assets/svg/svg-map.svg#twitter"></use></svg>
+</a>
+<a
+  href={`https://pinterest.com/pin/create/button/?url=${e(url)}&media=${e(image ?? '')}&description=${e(title)}`}
+  class="js-share pinterest"
+  rel="nofollow noopener noreferrer"
+  aria-label="Compartilhar no Pinterest"
+>
+  <svg class="u-icon"><use xlink:href="/assets/svg/svg-map.svg#pinterest"></use></svg>
+</a>
+<a
+  href={`https://mix.com/add?url=${e(url)}`}
+  class="js-share mix"
+  rel="nofollow noopener noreferrer"
+  aria-label="Compartilhar no Mix"
+>
+  <svg class="u-icon"><use xlink:href="/assets/svg/svg-map.svg#mix"></use></svg>
+</a>
+<a
+  href={`https://wa.me/?text=${e(title)} ${e(url)}`}
+  class="js-share whatsapp"
+  rel="nofollow noopener noreferrer"
+  aria-label="Compartilhar no WhatsApp"
+>
+  <svg class="u-icon"><use xlink:href="/assets/svg/svg-map.svg#whatsapp"></use></svg>
+</a>
+<a
+  href={`https://www.linkedin.com/sharing/share-offsite/?url=${e(url)}`}
+  class="js-share linkedin"
+  rel="nofollow noopener noreferrer"
+  aria-label="Compartilhar no LinkedIn"
+>
+  <svg class="u-icon"><use xlink:href="/assets/svg/svg-map.svg#linkedin"></use></svg>
+</a>
+<a
+  href={`https://buffer.com/add?text=${e(title)}&url=${e(url)}`}
+  class="js-share buffer"
+  rel="nofollow noopener noreferrer"
+  aria-label="Compartilhar no Buffer"
+>
+  <svg class="u-icon"><use xlink:href="/assets/svg/svg-map.svg#buffer"></use></svg>
+</a>

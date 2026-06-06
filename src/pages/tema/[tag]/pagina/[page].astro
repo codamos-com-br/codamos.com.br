@@ -1,0 +1,60 @@
+---
+import type { GetStaticPaths } from 'astro';
+import BaseLayout from '../../../../layouts/BaseLayout.astro';
+import Listing from '../../../../components/Listing.astro';
+import Sidebar from '../../../../components/Sidebar.astro';
+import { getNonEmptyTags, getPostsByTag, type Tag } from '../../../../lib/content';
+import { SITE, META, fillTemplate } from '../../../../lib/site';
+
+export const getStaticPaths = (async () => {
+  const tags = await getNonEmptyTags();
+  const paths = [];
+  for (const { tag, count } of tags) {
+    const posts = await getPostsByTag(tag.data.slug);
+    const totalPages = Math.ceil(posts.length / SITE.tagsPostsPerPage);
+    for (let page = 2; page <= totalPages; page++) {
+      const start = (page - 1) * SITE.tagsPostsPerPage;
+      paths.push({
+        params: { tag: tag.data.slug, page: String(page) },
+        props: {
+          tag,
+          count,
+          page,
+          totalPages,
+          posts: posts.slice(start, start + SITE.tagsPostsPerPage),
+        },
+      });
+    }
+  }
+  return paths;
+}) satisfies GetStaticPaths;
+
+const { tag, count, page, totalPages, posts } = Astro.props as {
+  tag: Tag;
+  count: number;
+  page: number;
+  totalPages: number;
+  posts: Awaited<ReturnType<typeof getPostsByTag>>;
+};
+
+const base = `/tema/${tag.data.slug}`;
+const prevUrl = page === 2 ? `${base}/` : `${base}/${SITE.pageName}/${page - 1}/`;
+const nextUrl = page < totalPages ? `${base}/${SITE.pageName}/${page + 1}/` : undefined;
+---
+
+<BaseLayout
+  title={fillTemplate(META.tagTitle, { tagname: tag.data.name })}
+  description={tag.data.description || `Artigos sobre ${tag.data.name}.`}
+  robots={META.robotsTags}
+  canonical={`${base}/${SITE.pageName}/${page}/`}
+  prevUrl={prevUrl}
+  nextUrl={nextUrl}
+>
+  <Listing posts={posts} prevUrl={prevUrl} nextUrl={nextUrl}>
+    <div class="page u-author">
+      <h1 class="page__title box__title">{tag.data.name} <sup>({count})</sup></h1>
+      {tag.data.description && <p>{tag.data.description}</p>}
+    </div>
+  </Listing>
+  <Sidebar />
+</BaseLayout>

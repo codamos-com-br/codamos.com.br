@@ -1,0 +1,26 @@
+---
+/**
+ * Taxonomy listing body — ports the tag.hbs/author.hbs structure:
+ * <main class="main"> <div class="page">…header…</div> <div class="l-grid …">cards</div> </main>
+ * The page header is provided via the default <slot/>.
+ */
+import type { Post } from '../lib/content';
+import Card from './Card.astro';
+import Pagination from './Pagination.astro';
+
+export interface Props {
+  posts: Post[];
+  prevUrl?: string;
+  nextUrl?: string;
+}
+const { posts, prevUrl, nextUrl } = Astro.props;
+const hasPagination = Boolean(prevUrl || nextUrl);
+---
+
+<main class="main">
+  <slot />
+  <div class="l-grid l-grid--2col-1-4">
+    {posts.map((post) => <Card post={post} heading="h5" />)}
+    {hasPagination && <Pagination prevUrl={prevUrl} nextUrl={nextUrl} extraClass="2col__2span" />}
+  </div>
+</main>
