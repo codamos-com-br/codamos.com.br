@@ -39,6 +39,13 @@ Revisão editorial e de SEO dos posts do Nawarian — **fase 1: correção crít
   - `como-redefinir-a-senha-de-root-mysql-mariadb`: sob `--skip-grant-tables`, o
     `ALTER USER` falha no MySQL 5.7+/8.0 — `FLUSH PRIVILEGES` movido para antes, com
     explicação.
+- **Correções remanescentes que o passo mecânico deixou passar (revisão):**
+  - `php-bitwise`: `fopen(arquivo.jpeg', 'rb')` sem a aspa de abertura (Parse error) →
+    `fopen('arquivo.jpeg', 'rb')`.
+  - `subindo-arquivos-no-github`: o en-dash representava a flag longa de dois hífens —
+    `git rm -cached` → `git rm --cached`.
+  - `subindo-arquivos-no-github`: aspas tipográficas (`" "`) nos blocos `<pre>` (saída do
+    git e comando `git commit -m`) → aspas retas; a prosa foi mantida intacta.
 
 ## 2026-07-08
 
