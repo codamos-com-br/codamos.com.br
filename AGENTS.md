@@ -42,7 +42,7 @@ perdas. Veja a seção "Decisões de migração" do `README.md`.
 ## Comandos
 
 ```bash
-npm run import     # (re)gera src/data/*.json a partir do db.sqlite do Publii
+npm run import     # (legado) importação única do db.sqlite do Publii — NÃO reexecute (ver Arquitetura)
 npm run dev        # servidor de desenvolvimento local em http://localhost:4321
 npm run build      # build estático para dist/ (astro build + índice pagefind)
 npm run preview    # serve o build de dist/
@@ -56,23 +56,27 @@ Node 20+ (`.nvmrc`). **Não há** suíte de testes nem linter além do Prettier.
 O site é orientado a dados, não um arquivo por post. O conteúdo vive em **três
 arquivos JSON** (`src/data/{posts,authors,tags}.json`) carregados como **content
 collections** do Astro (`src/content.config.ts`, validados por schemas zod). Esses
-arquivos JSON são **artefatos gerados** — não os edite manualmente.
+arquivos JSON são a **fonte de verdade canônica do conteúdo** — edite-os diretamente.
+
+> **O Publii foi abandonado.** A migração terminou; o `db.sqlite` do Publii **não é
+> mais a fonte de verdade** e não deve ser reimportado. `src/data/*.json` é o
+> conteúdo real do site a partir daqui. O script `import-content.mjs` fica preservado
+> apenas como registro histórico da importação única — **não reexecute `npm run
+> import`**, pois ele sobrescreveria as edições feitas diretamente no JSON.
 
 Fluxo de dados:
 
 ```
-Publii db.sqlite ──(npm run import)──> src/data/*.json ──(content collections)──> páginas Astro ──(astro build + pagefind)──> dist/
+src/data/*.json ──(content collections)──> páginas Astro ──(astro build + pagefind)──> dist/
 ```
 
-- **`scripts/import-content.mjs`** lê o banco SQLite do Publii com `better-sqlite3`
-  e emite o JSON. Ele decodifica os bit-flags de status do Publii (`published`,
-  `featured`, `draft`, `hidden`, `excludedHomepage`, `trashed`), reescreve os
-  placeholders do Publii no HTML dos posts (`#DOMAIN_NAME#`,
-  `#INTERNAL_LINK#/post/<id>`, `#INTERNAL_LINK#/tag/<id>`), e constrói o `srcset`
-  responsivo para as miniaturas de capa. O caminho padrão do banco é
-  `~/Documents/Publii/sites/codamoscombr/input/db.sqlite`; sobrescreva com
-  `PUBLII_DB=...`. Conteúdo na lixeira nunca é emitido; rascunhos são emitidos, mas
-  não geram páginas.
+- **`scripts/import-content.mjs`** (legado, não reexecutar) foi a importação única do
+  banco SQLite do Publii com `better-sqlite3`. Ele decodificou os bit-flags de status
+  do Publii (`published`, `featured`, `draft`, `hidden`, `excludedHomepage`,
+  `trashed`), reescreveu os placeholders do Publii no HTML dos posts (`#DOMAIN_NAME#`,
+  `#INTERNAL_LINK#/post/<id>`, `#INTERNAL_LINK#/tag/<id>`), e construiu o `srcset`
+  responsivo para as miniaturas de capa. Mantido apenas como referência do formato do
+  JSON gerado.
 
 - **`src/lib/content.ts`** é o único lugar que codifica a **semântica das flags de
   status** do Publii como helpers de consulta. Use-os em vez de filtrar
