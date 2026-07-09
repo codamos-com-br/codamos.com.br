@@ -40,3 +40,99 @@
 .c-card__image img {
   width: 100%;
 }
+
+/*
+ * Cookie-consent floating widget.
+ *
+ * The component ships no CSS of its own, so without these rules it fell into
+ * normal document flow and stacked at the very bottom of the page. Publii's
+ * original theme renders its GDPR popup (.pcb__banner) as a fixed, centered
+ * dark card pinned near the bottom — these rules reproduce that look/behaviour.
+ */
+.cookie-consent {
+  position: fixed;
+  left: 1rem;
+  right: 1rem;
+  bottom: 1rem;
+  z-index: 999999;
+  display: flex;
+  justify-content: center;
+  pointer-events: none;
+}
+.cookie-consent[hidden] {
+  display: none;
+}
+.cookie-consent__box {
+  pointer-events: auto;
+  width: 100%;
+  max-width: 714px;
+  background: #191a1f;
+  color: #a5a7b7;
+  padding: 1.5rem 2rem;
+  border-radius: 6px;
+  box-shadow: 0 10px 32px rgba(2, 2, 3, 0.28);
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+.cookie-consent__title {
+  color: #fff;
+  font-size: 1.15rem;
+  margin-bottom: 0.6rem;
+}
+.cookie-consent__desc {
+  margin-bottom: 1rem;
+}
+.cookie-consent__groups {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem 1.4rem;
+  margin-bottom: 1.2rem;
+}
+.cookie-consent__group {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  cursor: pointer;
+}
+.cookie-consent__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  justify-content: flex-end;
+}
+.cookie-consent__btn {
+  background: transparent;
+  color: #a5a7b7;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 4px;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  font-size: 0.85rem;
+}
+.cookie-consent__btn:hover {
+  color: #fff;
+  border-color: rgba(255, 255, 255, 0.45);
+}
+.cookie-consent__btn--primary {
+  background: var(--color);
+  color: #fff;
+  border-color: var(--color);
+}
+/* Reopen-settings badge — floats bottom-left, out of document flow. */
+.cookie-consent__badge {
+  position: fixed;
+  left: 1rem;
+  bottom: 1rem;
+  z-index: 999998;
+  background: var(--color);
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  padding: 0.5rem 0.9rem;
+  cursor: pointer;
+  font-size: 0.8rem;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.2);
+}
+.cookie-consent__badge[hidden] {
+  display: none;
+}

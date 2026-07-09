@@ -1,7 +1,11 @@
 ---
 /**
  * Header/topbar — ports technews partials/top.hbs.
- * Includes the (previously hidden) infobar search input, now wired to Pagefind (#14).
+ *
+ * Note: the `.content` grid wrapper and the infobar were moved to BaseLayout so
+ * the wrapper spans the whole page (main + sidebar + footer). Astro balances
+ * each component's template, so opening `.content` here would auto-close it at
+ * the end of this file and break the grid.
  */
 import { SITE } from '../lib/site';
 import Menu from './Menu.astro';
@@ -9,31 +13,14 @@ import Menu from './Menu.astro';
 export interface Props {
   lastUpdate?: Date;
 }
-const { lastUpdate } = Astro.props;
-const lastUpdateIso = lastUpdate?.toISOString();
-const lastUpdateLabel = lastUpdate
-  ? new Intl.DateTimeFormat('pt-BR', { day: 'numeric', month: 'long', year: 'numeric' }).format(
-      lastUpdate
-    )
-  : '';
+// lastUpdate is accepted for API compatibility but rendered by BaseLayout.
 ---
 
 <header class="topbar" id="js-header">
   <div class="topbar__inner">
-    <a class="logo" href={SITE.domain}>
+    <a class="logo" href="/">
       <img src={SITE.logo} alt={SITE.name} />
     </a>
     <Menu />
   </div>
 </header>
-<div class="content">
-  {
-    lastUpdate && (
-      <div class="infobar">
-        <div class="infobar__update">
-          Última atualização:
-          <time datetime={lastUpdateIso}>{lastUpdateLabel}</time>
-        </div>
-      </div>
-    )
-  }

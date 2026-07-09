@@ -1,21 +1,21 @@
 ---
 /**
- * Footer — ports technews partials/footer.hbs. Closes the .content wrapper
- * opened in Topbar, then emits the menu-config + theme scripts.
- * (No footer menu is configured in Publii; footer social buttons are off.)
+ * Footer — ports technews partials/footer.hbs. Rendered inside the `.content`
+ * grid wrapper (opened/closed in BaseLayout), then emits the menu-config +
+ * theme scripts. (No footer menu is configured in Publii; footer social
+ * buttons are off.)
  */
 import { SITE } from '../lib/site';
 ---
 
 <footer class="footer">
-  <a class="footer__logo" href={SITE.domain}>
+  <a class="footer__logo" href="/">
     <img src={SITE.logo} alt={SITE.name} />
   </a>
   <div class="footer__copyright">
     <p>{SITE.copyright}</p>
   </div>
 </footer>
-</div>{/* .content */}
 
 <script is:inline>
   window.publiiThemeMenuConfig = {

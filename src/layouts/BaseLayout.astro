@@ -1,8 +1,14 @@
 ---
 /**
- * Root layout — composes head + topbar (opens .content) + page slot + footer
- * (closes .content) + consent banner + gated analytics. Mirrors the technews
- * head.hbs → top.hbs → <page> → footer.hbs assembly.
+ * Root layout — composes head + topbar + a single `.content` grid wrapper
+ * (infobar + page slot + footer) + consent banner + gated analytics. Mirrors
+ * the technews head.hbs → top.hbs → <page> → footer.hbs assembly.
+ *
+ * The `.content` wrapper lives here (not split across Topbar/Footer): Astro
+ * balances each component's template independently, so a `<div>` opened in
+ * Topbar would be auto-closed at the end of Topbar — dropping the main column,
+ * sidebar and footer out of the grid. Keeping the wrapper in one component
+ * makes `main` + `sidebar` + `footer` real grid children again.
  */
 import { SITE } from '../lib/site';
 import BaseHead, { type Props as HeadProps } from '../components/BaseHead.astro';
@@ -16,6 +22,12 @@ export interface Props extends HeadProps {
 }
 
 const { lastUpdate, ...head } = Astro.props;
+const lastUpdateIso = lastUpdate?.toISOString();
+const lastUpdateLabel = lastUpdate
+  ? new Intl.DateTimeFormat('pt-BR', { day: 'numeric', month: 'long', year: 'numeric' }).format(
+      lastUpdate
+    )
+  : '';
 ---
 
 <!doctype html>
@@ -25,8 +37,20 @@ const { lastUpdate, ...head } = Astro.props;
   </head>
   <body>
     <Topbar lastUpdate={lastUpdate} />
-    <slot />
-    <Footer />
+    <div class="content">
+      {
+        lastUpdate && (
+          <div class="infobar">
+            <div class="infobar__update">
+              Última atualização:
+              <time datetime={lastUpdateIso}>{lastUpdateLabel}</time>
+            </div>
+          </div>
+        )
+      }
+      <slot />
+      <Footer />
+    </div>
     <CookieConsent />
     <Analytics />
   </body>

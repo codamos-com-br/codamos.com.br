@@ -49,7 +49,8 @@ export const SITE = {
     telegram: 'https://t.me/codamos_forum',
   },
 
-  copyright: '© 2021-2022 codamos.com.br',
+  // Year range ends at the current (build-time) year so it never goes stale.
+  copyright: `© 2021-${new Date().getFullYear()} codamos.com.br`,
 } as const;
 
 /* SEO meta title templates (Publii advanced.*MetaTitle). %sitename = SITE.name */
