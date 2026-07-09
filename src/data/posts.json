@@ -384,8 +384,8 @@
       "hidden": false,
       "excludedHomepage": false
     },
-    "metaTitle": "",
-    "metaDesc": "Neste artigo vamos ver como configurar seu usuário e e-mail do GIT em sua máquina local para corrigir as assinaturas de seus commits.",
+    "metaTitle": "Como Configurar Usuário e E-mail no Git (git config) - codamos.com.br",
+    "metaDesc": "Configure user.name e user.email no Git com git config, local ou global, para assinar seus commits corretamente. Guia rápido com os comandos prontos.",
     "metaRobots": "index, follow",
     "canonicalUrl": "",
     "mainTag": "git"
@@ -495,7 +495,7 @@
       "excludedHomepage": false
     },
     "metaTitle": "",
-    "metaDesc": "",
+    "metaDesc": "O erro \"Use of undefined constant\" em PHP costuma vir de strings sem aspas. Entenda a causa e veja como resolver esse erro no PHP 8 com exemplos.",
     "metaRobots": "index, follow",
     "canonicalUrl": "",
     "mainTag": "php"
@@ -622,8 +622,8 @@
       "hidden": false,
       "excludedHomepage": false
     },
-    "metaTitle": "",
-    "metaDesc": "Neste mini tutorial eu vou te mostrar como você pode renomear o commit anterior usando a opção amend do Git.",
+    "metaTitle": "Como Renomear um Commit no Git com git commit --amend - codamos.com.br",
+    "metaDesc": "Aprenda a renomear a mensagem do último commit ou de commits antigos no Git e GitHub usando git commit --amend e rebase. Passo a passo com exemplos.",
     "metaRobots": "index, follow",
     "canonicalUrl": "",
     "mainTag": "git"
@@ -812,8 +812,8 @@
       "hidden": false,
       "excludedHomepage": true
     },
-    "metaTitle": "",
-    "metaDesc": "",
+    "metaTitle": "Gerador de UUID v4 Online e Grátis | Gere e Copie - codamos.com.br",
+    "metaDesc": "Gere UUIDs versão 4 (RFC 4122) online e de graça. Clique para gerar, copie com um toque e crie quantos identificadores únicos precisar — sem cadastro.",
     "metaRobots": "index, follow",
     "canonicalUrl": "",
     "mainTag": "ferramentas"
@@ -960,7 +960,7 @@
       "excludedHomepage": false
     },
     "metaTitle": "",
-    "metaDesc": "",
+    "metaDesc": "Aprenda a visualizar e editar arquivos binários no terminal com o comando xxd: gere dumps hexadecimais, entenda a saída e altere bytes na prática.",
     "metaRobots": "index, follow",
     "canonicalUrl": "",
     "mainTag": "c"
@@ -1659,8 +1659,8 @@
       "hidden": false,
       "excludedHomepage": false
     },
-    "metaTitle": "",
-    "metaDesc": "",
+    "metaTitle": "Livro Refactoring, de Martin Fowler: Vale a Pena? (Resenha) - codamos.com.br",
+    "metaDesc": "Resenha completa do livro Refactoring, de Martin Fowler: o que você aprende, prós e contras e se vale a pena ler — opinião após três leituras da obra.",
     "metaRobots": "index, follow",
     "canonicalUrl": "",
     "mainTag": "livro"
@@ -1738,7 +1738,7 @@
       "excludedHomepage": false
     },
     "metaTitle": "",
-    "metaDesc": "",
+    "metaDesc": "Programar por coincidência é fazer o código funcionar sem entender por quê. Veja o conceito do livro Programador Pragmático e como programar deliberadamente.",
     "metaRobots": "index, follow",
     "canonicalUrl": "",
     "mainTag": "produtividade"
@@ -1858,7 +1858,7 @@
       "excludedHomepage": false
     },
     "metaTitle": "",
-    "metaDesc": "",
+    "metaDesc": "Devlog do jogo Sokoban em Raylib: como implementar o movimento do jogador na grade, tratando colisões e o empurrão de caixas passo a passo em C.",
     "metaRobots": "index, follow",
     "canonicalUrl": "",
     "mainTag": "jogos"
@@ -2428,8 +2428,8 @@
       "hidden": false,
       "excludedHomepage": false
     },
-    "metaTitle": "",
-    "metaDesc": "Subir arquivos do seu projeto no GitHub (ou git) é simples e usa alguns comandos como git status, add, commit, remote entre outros.",
+    "metaTitle": "Como Subir Arquivos e Pastas no GitHub: Passo a Passo - codamos.com.br",
+    "metaDesc": "Aprenda a subir seus arquivos e projetos no GitHub usando git add, commit, remote e push. Tutorial passo a passo para enviar seu código ao repositório.",
     "metaRobots": "index, follow",
     "canonicalUrl": "",
     "mainTag": "git"
