@@ -7,7 +7,7 @@ funcionalidades, URLs e SEO. Veja o épico [#1](../../issues/1).
 ## Stack
 
 - **Astro** (output estático), TypeScript estrito.
-- Conteúdo em **content collections** geradas a partir do `db.sqlite` do Publii.
+- Conteúdo em **content collections** a partir de `src/data/*.json` (fonte de verdade canônica; o Publii foi abandonado).
 - CSS portado do tema `technews` (`src/styles/theme.css`), fontes do sistema (`font-pair-0`).
 - Busca client-side via **Pagefind**.
 - Deploy em **GitHub Pages**.
@@ -16,7 +16,7 @@ funcionalidades, URLs e SEO. Veja o épico [#1](../../issues/1).
 
 ```bash
 npm install        # instala dependências
-npm run import     # (re)gera src/data/*.json a partir do db.sqlite do Publii
+npm run import     # (legado) importação única do Publii — NÃO reexecute (ver abaixo)
 npm run dev        # servidor local em http://localhost:4321
 npm run build      # build estático em dist/ (Astro + índice Pagefind)
 npm run preview    # serve o build de dist/
@@ -25,20 +25,23 @@ npm run format     # Prettier
 
 Node 20+ (veja `.nvmrc`).
 
-### Migração de conteúdo
+### Fonte de verdade do conteúdo
 
-`npm run import` executa `scripts/import-content.mjs`, que lê o banco do Publii com
-`better-sqlite3` e emite `src/data/{posts,authors,tags}.json` (validados por schemas
-zod em `src/content.config.ts`).
+> **O Publii foi abandonado.** A migração terminou e `src/data/{posts,authors,tags}.json`
+> é agora a **fonte de verdade canônica** do conteúdo — edite esses arquivos
+> diretamente. **Não reexecute `npm run import`:** ele sobrescreveria as edições feitas
+> no JSON com o estado antigo (e já defasado) do `db.sqlite` do Publii.
 
-- Caminho do banco padrão: `~/Documents/Publii/sites/codamoscombr/input/db.sqlite`
-  (sobrescreva com `PUBLII_DB=/caminho/db.sqlite`).
-- Decodifica flags de status (`published`, `featured`, `draft`, `hidden`,
-  `excluded_homepage`, `trashed`); conteúdo `trashed` nunca é migrado, drafts são
+`scripts/import-content.mjs` fica preservado apenas como registro histórico da
+importação única. Para referência, ele lia o banco do Publii com `better-sqlite3` e
+emitia os três JSON (validados por schemas zod em `src/content.config.ts`):
+
+- Decodificava flags de status (`published`, `featured`, `draft`, `hidden`,
+  `excluded_homepage`, `trashed`); conteúdo `trashed` nunca era migrado, drafts eram
   importados mas **não** geram páginas.
-- Reescreve placeholders do Publii: `#DOMAIN_NAME#` → `/media/posts/<id>/`,
+- Reescrevia placeholders do Publii: `#DOMAIN_NAME#` → `/media/posts/<id>/`,
   `#INTERNAL_LINK#/post/<id>` → `/<slug>/`, `#INTERNAL_LINK#/tag/<id>` → `/tema/<slug>/`.
-- Monta `srcset` responsivo dos thumbnails de capa a partir das variantes do Publii.
+- Montava `srcset` responsivo dos thumbnails de capa a partir das variantes do Publii.
 
 ## Decisões de migração
 
