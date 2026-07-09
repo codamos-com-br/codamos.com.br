@@ -94,6 +94,26 @@
   gap: 0.4rem;
   cursor: pointer;
 }
+/*
+ * theme.css hides every native checkbox (opacity:0 / position:absolute /
+ * visibility:hidden / width:0) and redraws it via an `input + label` sibling
+ * proxy. Our consent markup nests the input inside the label, so no proxy is
+ * ever drawn — leaving the box invisible and the toggles feeling dead. Restore
+ * the native rendering just for the consent groups.
+ */
+.cookie-consent__group input[type='checkbox'] {
+  position: static;
+  opacity: 1;
+  visibility: visible;
+  width: 1rem;
+  height: 1rem;
+  margin: 0;
+  -webkit-appearance: auto;
+  appearance: auto;
+  accent-color: var(--color);
+  cursor: pointer;
+  flex: none;
+}
 .cookie-consent__actions {
   display: flex;
   flex-wrap: wrap;
