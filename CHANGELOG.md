@@ -6,3 +6,4 @@ Todas as alterações relevantes deste projeto estão documentadas neste arquivo
 
 - Migração do site para Astro + GitHub Pages.
 - Ajuste de títulos e meta descrições da maioria das páginas.
+- Otimização do gerador de UUID para funcionar sem depender de rede.
