@@ -255,8 +255,14 @@ enrolação e começar!".
      "Esse artigo deu trabalho ein!");
    - um próximo passo ou promessa de post futuro ("No próximo post eu vou…");
    - CTA de compartilhamento ou contato e despedida: "Não esquece de compartilhar com
-     a galera", "Me dá um toque no Twitter: @nawarian", "Até a próxima! 👋", "Um
+     a galera", "Me dá um toque lá no LinkedIn", "Até a próxima! 👋", "Um
      grande abraço e te vejo na próxima! 👋", "Valeu!".
+
+   **Contato é pelo LinkedIn, nunca pelo Twitter.** Posts antigos chamam para o
+   "Twitter: @nawarian", mas isso não vale mais: em posts novos, não convide o leitor
+   para o Twitter/X. Quando o CTA for de contato, aponte para o LinkedIn com link:
+   `<a href="https://www.linkedin.com/in/nickolasdasilva/" target="_blank"
+   rel="noopener noreferrer">LinkedIn</a>`.
 
    How-tos bem curtos podem terminar sem despedida.
 

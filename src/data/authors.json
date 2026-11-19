@@ -1,13 +1,13 @@
 [
   {
     "id": "nawarian",
-    "name": "Nawarian",
+    "name": "Níckolas Da Silva",
     "username": "nawarian",
     "email": "",
-    "website": "https://twitter.com/nawarian",
+    "website": "https://www.linkedin.com/in/nickolasdasilva/",
     "avatar": "/media/website/De0e9ZVX_400x400.jpg",
     "useGravatar": false,
-    "description": "<p><em>Staff engineer</em> em um dos 200 sites mais acessados do mundo, já foi gerente de equipe, programador, consultor e se especializou em PHP.</p>\n<p>Hoje Nawarian também se interessa por desenvolvimento de jogos e compõe o time de jogos do <span style=\"color: #3598db;\"><span style=\"text-decoration: underline;\"><strong><a href=\"https://nucleodetecnologia.com.br/\" target=\"_blank\" rel=\"noopener\" style=\"color: #3598db; text-decoration: underline;\">Núcleo de Tecnologia do MTST</a></strong></span>.</span></p>",
+    "description": "<p>CEO e fundador do <strong><a href=\"https://apiario.dev\" target=\"_blank\" rel=\"noopener\" style=\"color: #3598db; text-decoration: underline;\">Apiário Dev</a></strong>, uma solução pré-paga e econômica para que devs brasileiros escolham os melhores modelos de IA para cada tarefa de código.</p>\n<p>Antes disso, foi <em>staff engineer</em> em um dos 200 sites mais acessados do mundo, gerente de equipe, programador e consultor, e se especializou em PHP. Também se interessa por desenvolvimento de jogos.</p>",
     "metaTitle": "",
     "metaDescription": ""
   },

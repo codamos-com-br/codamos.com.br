@@ -8,6 +8,27 @@ Todas as alterações relevantes deste projeto estão documentadas neste arquivo
   que reproduz a voz, o tom e o raciocínio de engenharia do Nawarian. Ela foi destilada
   da leitura dos 67 posts do autor em `src/data/posts.json` e serve para redigir e
   revisar posts e responder dúvidas técnicas no estilo do blog.
+- **Novo post `php-8-6-novidades`:** adicionado em `src/data/posts.json` (postId 80,
+  autor `nawarian`, tag `php`) o artigo "Novidades do PHP 8.6: o que muda no seu
+  código e o que pode quebrar no upgrade", baseado na página oficial de lançamento
+  (`php.net/releases/8.6`) e nas RFCs linkadas nela. Cobre Partial Function
+  Application, `Time\Duration`, `clamp()`, `SortDirection`, readonly com valor padrão,
+  erros de stream, `Io\Poll`, novidades de Reflection, mudanças de comportamento e
+  deprecações, com canonical absoluta autorreferente.
+- **Capa do post `php-8-6-novidades`:** criada a imagem de capa (editor com exemplo de
+  Partial Function Application, logo CAMARADEV e wordmark em Courier Prime) em
+  `public/media/posts/80/`, seguindo o padrão dos posts migrados do Publii: original
+  1280×720 e variantes `xs`/`sm`/`md`/`lg`/`xl`/`2xl` em `responsive/` (JPEG
+  qualidade 60, sem metadados), com `srcset`/`sizes` no mesmo formato dos demais.
+- **CTA de contato via LinkedIn:** o post `php-8-6-novidades` deixa de chamar o leitor
+  para o Twitter e passa a apontar para o LinkedIn do autor. A definição do agente
+  `nawarian` (`.claude/agents/nawarian.md`) foi atualizada com a mesma regra: posts
+  novos não convidam para o Twitter/X; o contato é pelo LinkedIn.
+- **Bio do autor `nawarian`:** em `src/data/authors.json`, o nome exibido passa de
+  "Nawarian" para "Níckolas Da Silva"; a bio agora apresenta o autor como CEO e
+  fundador do [Apiário Dev](https://apiario.dev) e remove a menção ao Núcleo de
+  Tecnologia do MTST; o `website` passa do Twitter para o LinkedIn. O `id`/`username`
+  continua `nawarian`, preservando a URL `/autor/nawarian/`.
 
 ## 2026-07-09
 
