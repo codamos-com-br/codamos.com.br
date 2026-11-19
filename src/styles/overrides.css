@@ -156,3 +156,16 @@
 .cookie-consent__badge[hidden] {
   display: none;
 }
+
+/*
+ * Numeração do sumário (.post__toc).
+ *
+ * O theme.css faz `counter-reset:item` na lista do sumário, o que substitui o
+ * `counter-reset:list-item` padrão do navegador. Com isso, o contador nativo
+ * (usado pelo `list-style:decimal`) herdava a contagem de uma lista anterior no
+ * post: um TL;DR com 7 itens fazia o sumário começar no 8. Resetar os dois
+ * contadores faz o sumário sempre começar no 1.
+ */
+.post__toc ul {
+  counter-reset: item list-item;
+}

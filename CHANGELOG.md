@@ -4,6 +4,27 @@ Todas as alterações relevantes deste projeto estão documentadas neste arquivo
 
 ## 2026-11-19
 
+- **Novo post `nginx2root-cves-nginx-o-que-fazer`:** adicionado em
+  `src/data/posts.json` (postId 81, autor `nawarian`, tags `linux` e `tecnica`) o
+  artigo "nginx2root: novas falhas críticas de segurança dão acesso de root ao seu
+  site!", sobre a série de CVEs do nginx divulgada em 18/11/2026. Traz
+  plano de ação por prazo (hoje / esta semana / depois), mitigações por CVE, o caso do
+  ingress-nginx aposentado, o bug de SCTP no kernel, quem descobriu as falhas e um
+  resumo da repercussão. Baseado no blog da Xint, nos FAQs da Tenable e da watchTowr e
+  em reportagens linkadas no post, com canonical absoluta autorreferente.
+- **Capa do post `nginx2root-cves-nginx-o-que-fazer`:** criada no mesmo estilo da capa
+  do post do PHP 8.6 (janela de editor com `listen 443 ssl http2;` em destaque, logo
+  CAMARADEV e wordmark), em `public/media/posts/81/`, com original 1280×720 e variantes
+  `xs`/`sm`/`md`/`lg`/`xl`/`2xl` em `responsive/`.
+- **Artes SVG no post `nginx2root-cves-nginx-o-que-fazer`:** as tabelas dos cinco CVEs
+  e da linha do tempo da divulgação viraram ilustrações SVG com a paleta do site
+  (`public/media/posts/81/nginx2root-cves*.svg` e
+  `nginx2root-linha-do-tempo*.svg`), cada uma com versão desktop e mobile servidas via
+  `<picture>` para o texto continuar legível em telas estreitas.
+- **Numeração do sumário:** corrigido em `src/styles/overrides.css` o sumário
+  (`.post__toc`) que começava a numerar do ponto onde uma lista anterior do post
+  parou (no post do nginx2root, começava no 8). O `counter-reset:item` do tema
+  anulava o reset do contador nativo `list-item`; agora os dois são resetados.
 - **Agente `nawarian`:** criado `.claude/agents/nawarian.md`, uma definição de agente
   que reproduz a voz, o tom e o raciocínio de engenharia do Nawarian. Ela foi destilada
   da leitura dos 67 posts do autor em `src/data/posts.json` e serve para redigir e

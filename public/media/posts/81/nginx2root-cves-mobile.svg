@@ -1,0 +1,79 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 1606" width="400" height="1606" role="img">
+<title>Os cinco CVEs do nginx2root</title><desc>Cartões com os cinco CVEs, todos CVSS 9.2. CVE-2026-123007 e CVE-2026-123633 (HTTP/2) são bloqueados ao desligar o HTTP/2; CVE-2026-123634 (resolver/mirror), CVE-2026-121810 (HTTP/3) e CVE-2026-113425 (mail proxy) não.</desc>
+<rect width="400" height="1606" rx="14" fill="#F7F7F8"/>
+<text x="16" y="46" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Ubuntu,'Helvetica Neue',Arial,sans-serif" font-size="26" font-weight="800" fill="#3F51B5" text-anchor="start">nginx2root</text>
+<text x="16" y="74" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Ubuntu,'Helvetica Neue',Arial,sans-serif" font-size="16" font-weight="500" fill="#84888E" text-anchor="start">5 CVEs, todos críticos: CVSS 4.0 = 9.2,</text>
+<text x="16" y="96" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Ubuntu,'Helvetica Neue',Arial,sans-serif" font-size="16" font-weight="500" fill="#84888E" text-anchor="start">sem autenticação</text>
+<rect x="16" y="118" width="368" height="252" rx="10" fill="#FFFFFF" stroke="#E1E2E3"/>
+<path d="M26 118h-0a10 10 0 0 0 -10 10v232a10 10 0 0 0 10 10z" fill="#3F51B5"/>
+<rect x="16" y="128" width="6" height="232" fill="#3F51B5"/>
+<text x="40" y="153" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,'DejaVu Sans Mono','Liberation Mono',monospace" font-size="17" font-weight="700" fill="#3F51B5" text-anchor="start">CVE-2026-123007</text>
+<text x="40" y="175" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Ubuntu,'Helvetica Neue',Arial,sans-serif" font-size="14" font-weight="600" fill="#84888E" text-anchor="start">desde o nginx 1.9.5 (2015)</text>
+<text x="40" y="206" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Ubuntu,'Helvetica Neue',Arial,sans-serif" font-size="21" font-weight="700" fill="#2C2E35" text-anchor="start">HTTP/2: controle de fluxo</text>
+<text x="40" y="234" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Ubuntu,'Helvetica Neue',Arial,sans-serif" font-size="16" font-weight="400" fill="#2C2E35" text-anchor="start">Integer overflow que leva a leitura</text>
+<text x="40" y="256" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Ubuntu,'Helvetica Neue',Arial,sans-serif" font-size="16" font-weight="400" fill="#2C2E35" text-anchor="start">e escrita fora dos limites no heap</text>
+<text x="40" y="284" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Ubuntu,'Helvetica Neue',Arial,sans-serif" font-size="16" fill="#2C2E35"><tspan font-weight="700">Exposto se:</tspan> HTTP/2 ligado, em</text>
+<text x="40" y="306" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Ubuntu,'Helvetica Neue',Arial,sans-serif" font-size="16" font-weight="400" fill="#2C2E35" text-anchor="start">qualquer versão de 1.9.5 a 1.31.8</text>
+<rect x="40" y="322" width="245" height="30" rx="15" fill="#E8EAF6"/>
+<text x="56" y="342.04" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Ubuntu,'Helvetica Neue',Arial,sans-serif" font-size="15" font-weight="800" fill="#3F51B5" text-anchor="start">✓</text>
+<text x="76" y="342.04" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Ubuntu,'Helvetica Neue',Arial,sans-serif" font-size="14" font-weight="700" fill="#3F51B5" text-anchor="start">Desligar HTTP/2 resolve</text>
+<rect x="16" y="382" width="368" height="274" rx="10" fill="#FFFFFF" stroke="#E1E2E3"/>
+<path d="M26 382h-0a10 10 0 0 0 -10 10v254a10 10 0 0 0 10 10z" fill="#3F51B5"/>
+<rect x="16" y="392" width="6" height="254" fill="#3F51B5"/>
+<text x="40" y="417" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,'DejaVu Sans Mono','Liberation Mono',monospace" font-size="17" font-weight="700" fill="#3F51B5" text-anchor="start">CVE-2026-123633</text>
+<text x="40" y="439" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Ubuntu,'Helvetica Neue',Arial,sans-serif" font-size="14" font-weight="600" fill="#84888E" text-anchor="start">desde o nginx 1.19.7</text>
+<text x="40" y="470" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Ubuntu,'Helvetica Neue',Arial,sans-serif" font-size="21" font-weight="700" fill="#2C2E35" text-anchor="start">HTTP/2: drenagem de conexões</text>
+<text x="40" y="498" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Ubuntu,'Helvetica Neue',Arial,sans-serif" font-size="16" font-weight="400" fill="#2C2E35" text-anchor="start">Use-after-free quando o nginx faz</text>
+<text x="40" y="520" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Ubuntu,'Helvetica Neue',Arial,sans-serif" font-size="16" font-weight="400" fill="#2C2E35" text-anchor="start">proxy para um upstream</text>
+<text x="40" y="548" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Ubuntu,'Helvetica Neue',Arial,sans-serif" font-size="16" fill="#2C2E35"><tspan font-weight="700">Exposto se:</tspan> HTTP/2 + nginx como</text>
+<text x="40" y="570" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Ubuntu,'Helvetica Neue',Arial,sans-serif" font-size="16" font-weight="400" fill="#2C2E35" text-anchor="start">reverse proxy + worker com poucos</text>
+<text x="40" y="592" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Ubuntu,'Helvetica Neue',Arial,sans-serif" font-size="16" font-weight="400" fill="#2C2E35" text-anchor="start">slots de worker_connections</text>
+<rect x="40" y="608" width="245" height="30" rx="15" fill="#E8EAF6"/>
+<text x="56" y="628.04" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Ubuntu,'Helvetica Neue',Arial,sans-serif" font-size="15" font-weight="800" fill="#3F51B5" text-anchor="start">✓</text>
+<text x="76" y="628.04" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Ubuntu,'Helvetica Neue',Arial,sans-serif" font-size="14" font-weight="700" fill="#3F51B5" text-anchor="start">Desligar HTTP/2 resolve</text>
+<rect x="16" y="668" width="368" height="318" rx="10" fill="#FFFFFF" stroke="#E1E2E3"/>
+<path d="M26 668h-0a10 10 0 0 0 -10 10v298a10 10 0 0 0 10 10z" fill="#CD0404"/>
+<rect x="16" y="678" width="6" height="298" fill="#CD0404"/>
+<text x="40" y="703" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,'DejaVu Sans Mono','Liberation Mono',monospace" font-size="17" font-weight="700" fill="#3F51B5" text-anchor="start">CVE-2026-123634</text>
+<text x="40" y="725" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Ubuntu,'Helvetica Neue',Arial,sans-serif" font-size="14" font-weight="600" fill="#84888E" text-anchor="start">desde o nginx 1.13.4</text>
+<text x="40" y="756" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Ubuntu,'Helvetica Neue',Arial,sans-serif" font-size="21" font-weight="700" fill="#2C2E35" text-anchor="start">Resolver + mirror</text>
+<text x="40" y="784" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Ubuntu,'Helvetica Neue',Arial,sans-serif" font-size="16" font-weight="400" fill="#2C2E35" text-anchor="start">Use-after-free em subrequests com</text>
+<text x="40" y="806" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Ubuntu,'Helvetica Neue',Arial,sans-serif" font-size="16" font-weight="400" fill="#2C2E35" text-anchor="start">resolução de DNS em tempo de</text>
+<text x="40" y="828" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Ubuntu,'Helvetica Neue',Arial,sans-serif" font-size="16" font-weight="400" fill="#2C2E35" text-anchor="start">requisição</text>
+<text x="40" y="856" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Ubuntu,'Helvetica Neue',Arial,sans-serif" font-size="16" fill="#2C2E35"><tspan font-weight="700">Exposto se:</tspan> resolver + proxy_pass</text>
+<text x="40" y="878" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Ubuntu,'Helvetica Neue',Arial,sans-serif" font-size="16" font-weight="400" fill="#2C2E35" text-anchor="start">com destino vindo da requisição +</text>
+<text x="40" y="900" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Ubuntu,'Helvetica Neue',Arial,sans-serif" font-size="16" font-weight="400" fill="#2C2E35" text-anchor="start">mirror com mirror_request_body off</text>
+<text x="40" y="922" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Ubuntu,'Helvetica Neue',Arial,sans-serif" font-size="16" font-weight="400" fill="#2C2E35" text-anchor="start">(SSI também pode chegar lá)</text>
+<rect x="40" y="938" width="279" height="30" rx="15" fill="#FCEBEB"/>
+<text x="56" y="958.04" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Ubuntu,'Helvetica Neue',Arial,sans-serif" font-size="15" font-weight="800" fill="#CD0404" text-anchor="start">✗</text>
+<text x="76" y="958.04" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Ubuntu,'Helvetica Neue',Arial,sans-serif" font-size="14" font-weight="700" fill="#CD0404" text-anchor="start">Desligar HTTP/2 NÃO resolve</text>
+<rect x="16" y="998" width="368" height="252" rx="10" fill="#FFFFFF" stroke="#E1E2E3"/>
+<path d="M26 998h-0a10 10 0 0 0 -10 10v232a10 10 0 0 0 10 10z" fill="#CD0404"/>
+<rect x="16" y="1008" width="6" height="232" fill="#CD0404"/>
+<text x="40" y="1033" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,'DejaVu Sans Mono','Liberation Mono',monospace" font-size="17" font-weight="700" fill="#3F51B5" text-anchor="start">CVE-2026-121810</text>
+<text x="40" y="1055" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Ubuntu,'Helvetica Neue',Arial,sans-serif" font-size="14" font-weight="600" fill="#84888E" text-anchor="start">desde o nginx 1.25.0</text>
+<text x="40" y="1086" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Ubuntu,'Helvetica Neue',Arial,sans-serif" font-size="21" font-weight="700" fill="#2C2E35" text-anchor="start">HTTP/3 (QUIC)</text>
+<text x="40" y="1114" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Ubuntu,'Helvetica Neue',Arial,sans-serif" font-size="16" font-weight="400" fill="#2C2E35" text-anchor="start">Use-after-free nos streams QUIC</text>
+<text x="40" y="1136" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Ubuntu,'Helvetica Neue',Arial,sans-serif" font-size="16" font-weight="400" fill="#2C2E35" text-anchor="start">quando há proxy para upstream</text>
+<text x="40" y="1164" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Ubuntu,'Helvetica Neue',Arial,sans-serif" font-size="16" fill="#2C2E35"><tspan font-weight="700">Exposto se:</tspan> HTTP/3 ligado + proxy</text>
+<text x="40" y="1186" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Ubuntu,'Helvetica Neue',Arial,sans-serif" font-size="16" font-weight="400" fill="#2C2E35" text-anchor="start">para upstream</text>
+<rect x="40" y="1202" width="279" height="30" rx="15" fill="#FCEBEB"/>
+<text x="56" y="1222.04" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Ubuntu,'Helvetica Neue',Arial,sans-serif" font-size="15" font-weight="800" fill="#CD0404" text-anchor="start">✗</text>
+<text x="76" y="1222.04" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Ubuntu,'Helvetica Neue',Arial,sans-serif" font-size="14" font-weight="700" fill="#CD0404" text-anchor="start">Desligar HTTP/2 NÃO resolve</text>
+<rect x="16" y="1262" width="368" height="274" rx="10" fill="#FFFFFF" stroke="#E1E2E3"/>
+<path d="M26 1262h-0a10 10 0 0 0 -10 10v254a10 10 0 0 0 10 10z" fill="#CD0404"/>
+<rect x="16" y="1272" width="6" height="254" fill="#CD0404"/>
+<text x="40" y="1297" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,'DejaVu Sans Mono','Liberation Mono',monospace" font-size="17" font-weight="700" fill="#3F51B5" text-anchor="start">CVE-2026-113425</text>
+<text x="40" y="1319" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Ubuntu,'Helvetica Neue',Arial,sans-serif" font-size="14" font-weight="600" fill="#84888E" text-anchor="start">desde o nginx 0.5.15</text>
+<text x="40" y="1350" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Ubuntu,'Helvetica Neue',Arial,sans-serif" font-size="21" font-weight="700" fill="#2C2E35" text-anchor="start">Mail proxy</text>
+<text x="40" y="1378" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Ubuntu,'Helvetica Neue',Arial,sans-serif" font-size="16" font-weight="400" fill="#2C2E35" text-anchor="start">Use-after-free no caminho do</text>
+<text x="40" y="1400" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Ubuntu,'Helvetica Neue',Arial,sans-serif" font-size="16" font-weight="400" fill="#2C2E35" text-anchor="start">auth_http</text>
+<text x="40" y="1428" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Ubuntu,'Helvetica Neue',Arial,sans-serif" font-size="16" fill="#2C2E35"><tspan font-weight="700">Exposto se:</tspan> bloco mail com proxy on</text>
+<text x="40" y="1450" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Ubuntu,'Helvetica Neue',Arial,sans-serif" font-size="16" font-weight="400" fill="#2C2E35" text-anchor="start">e auth_http, mesmo com o auth</text>
+<text x="40" y="1472" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Ubuntu,'Helvetica Neue',Arial,sans-serif" font-size="16" font-weight="400" fill="#2C2E35" text-anchor="start">recusando todos os logins</text>
+<rect x="40" y="1488" width="279" height="30" rx="15" fill="#FCEBEB"/>
+<text x="56" y="1508.04" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Ubuntu,'Helvetica Neue',Arial,sans-serif" font-size="15" font-weight="800" fill="#CD0404" text-anchor="start">✗</text>
+<text x="76" y="1508.04" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Ubuntu,'Helvetica Neue',Arial,sans-serif" font-size="14" font-weight="700" fill="#CD0404" text-anchor="start">Desligar HTTP/2 NÃO resolve</text>
+<text x="16" y="1564" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Ubuntu,'Helvetica Neue',Arial,sans-serif" font-size="16" font-weight="700" fill="#3F51B5" text-anchor="start">Atualizar para 1.30.7 ou 1.31.9 (e</text>
+<text x="16" y="1586" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Ubuntu,'Helvetica Neue',Arial,sans-serif" font-size="16" font-weight="700" fill="#3F51B5" text-anchor="start">reiniciar) corrige os cinco.</text>
+</svg>
