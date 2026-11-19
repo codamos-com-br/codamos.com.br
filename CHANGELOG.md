@@ -2,6 +2,13 @@
 
 Todas as alterações relevantes deste projeto estão documentadas neste arquivo.
 
+## 2026-11-19
+
+- **Agente `nawarian`:** criado `.claude/agents/nawarian.md`, uma definição de agente
+  que reproduz a voz, o tom e o raciocínio de engenharia do Nawarian. Ela foi destilada
+  da leitura dos 67 posts do autor em `src/data/posts.json` e serve para redigir e
+  revisar posts e responder dúvidas técnicas no estilo do blog.
+
 ## 2026-07-09
 
 Revisão editorial e de SEO dos posts do Nawarian — **fase 1: correção crítica** (issue #17).
