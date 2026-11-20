@@ -13,10 +13,10 @@ Todas as alterações relevantes deste projeto estão documentadas neste arquivo
   com 17 CVEs, 7 críticos. Traz plano de ação, análise por cenário, mitigações com
   custo e as divergências entre as fontes, com canonical absoluta autorreferente.
 - **Capa do post `php2shell-historia-completa-falhas-php`:** criada no estilo das
-  capas anteriores (editor com `session.upload_progress.enabled = 0` em destaque, logo
-  CAMARADEV e wordmark) em `public/media/posts/82/`, com original 1280×720 e variantes
-  `xs`/`sm`/`md`/`lg`/`xl`/`2xl` em `responsive/`. Outras duas opções de capa estão
-  no PR para escolha.
+  capas anteriores (linha do tempo da saga com 21/10, 23/10 e 19/11, logo CAMARADEV e
+  wordmark) em `public/media/posts/82/`, com original 1280×720 e variantes
+  `xs`/`sm`/`md`/`lg`/`xl`/`2xl` em `responsive/`. Escolhida entre três opções
+  apresentadas no PR.
 
 ## 2026-11-19
 
