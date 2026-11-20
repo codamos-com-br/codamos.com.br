@@ -17,6 +17,20 @@ Todas as alterações relevantes deste projeto estão documentadas neste arquivo
   wordmark) em `public/media/posts/82/`, com original 1280×720 e variantes
   `xs`/`sm`/`md`/`lg`/`xl`/`2xl` em `responsive/`. Escolhida entre três opções
   apresentadas no PR.
+- **Revisão do post `php2shell-historia-completa-falhas-php`:**
+  - Fontes linkadas no próprio texto, em vez de uma seção "Referências" no fim. Todo
+    CVE aparece com o ID canônico completo (ex.: CVE-2026-126714) e link para o NVD.
+  - Afirmações que vinham da Wikipedia foram conferidas nas fontes originais (Calif,
+    Wiz, PHP Foundation, Scherzer, BleepingComputer, Recorded Future, The Register,
+    NBC, ITmedia, CP24, NCSC). As que não se confirmaram foram removidas, e as
+    paralisações de Umamusume e Granblue foram movidas de outubro para 19/11.
+  - A linha do tempo do vazamento virou ilustração SVG
+    (`public/media/posts/82/php2shell-linha-do-tempo*.svg`), com versão desktop e
+    mobile servidas via `<picture>`.
+  - Removida a seção "Isso me afeta?". "O que eu acho disso tudo" virou "Conclusão",
+    com subtítulo sobre a velocidade de lançamento das correções.
+  - Adicionada menção à consultoria do autor para atualização segura de versões do PHP.
+  - Ajustes de estilo: nenhuma frase termina em "tu"; usa-se "você".
 
 ## 2026-11-19
 

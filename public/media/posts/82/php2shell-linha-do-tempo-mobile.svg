@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 790" width="400" height="790" role="img">
+<title>Linha do tempo do PHP2Shell</title><desc>17/10: Honeypot da Amazon registra a primeira tentativa de exploração; 20/10 ~15:00 UTC: Os IDs dos CVEs vazam com CVSS 10.0 e data errada; 20/10 19:30 UTC: PHP antecipa a release de 22/10 para 21/10, 14:00 UTC; 20/10 ~20:00 UTC: Calif publica por engano um vídeo da prova de conceito; 21/10 07:34 UTC: Patchstack relata incidentes de exploração em hospedagens; 21/10 07:41 UTC: Chainguard quebra o embargo publicando imagens já corrigidas; 21/10 13:34 UTC: Advisories e releases saem: 8.5.12, 8.4.27, 8.3.36, 8.2.35; 25/10 15:47 UTC: Servidor sem patch invadido no desafio “Steal My Bitcoin”; 26/10: CISA coloca os dois CVEs no catálogo KEV; 29/10: Unit 42: PAN-OS explorado, encadeado com bug do kernel até root</desc>
+<rect width="400" height="790" rx="14" fill="#F7F7F8"/>
+<text x="18" y="44" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Ubuntu,'Helvetica Neue',Arial,sans-serif" font-size="21" font-weight="800" fill="#2C2E35" text-anchor="start">Do vazamento ao patch (e depois)</text>
+<text x="18" y="70" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Ubuntu,'Helvetica Neue',Arial,sans-serif" font-size="15" font-weight="500" fill="#84888E" text-anchor="start">Outubro de 2026, horários em UTC</text>
+<circle cx="24" cy="95" r="6" fill="#CD0404"/>
+<text x="36" y="100" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Ubuntu,'Helvetica Neue',Arial,sans-serif" font-size="14" font-weight="600" fill="#84888E" text-anchor="start">antes do patch</text>
+<circle cx="158" cy="95" r="6" fill="#3F51B5"/>
+<text x="170" y="100" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Ubuntu,'Helvetica Neue',Arial,sans-serif" font-size="14" font-weight="600" fill="#84888E" text-anchor="start">depois do patch</text>
+<rect x="10" y="122.0" width="380" height="380.0" rx="12" fill="#FCEBEB"/>
+<line x1="32" y1="150" x2="32" y2="502.0" stroke="#CD0404" stroke-width="4" stroke-linecap="round"/>
+<line x1="32" y1="502.0" x2="32" y2="726" stroke="#3F51B5" stroke-width="4" stroke-linecap="round"/>
+<circle cx="32" cy="150" r="8" fill="#FFFFFF" stroke="#CD0404" stroke-width="4"/>
+<text x="54" y="140" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,'DejaVu Sans Mono','Liberation Mono',monospace" font-size="14" font-weight="800" fill="#CD0404" text-anchor="start">17/10</text>
+<text x="54" y="160" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Ubuntu,'Helvetica Neue',Arial,sans-serif" font-size="15" font-weight="700" fill="#2C2E35" text-anchor="start">Honeypot da Amazon registra</text>
+<text x="54" y="178" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Ubuntu,'Helvetica Neue',Arial,sans-serif" font-size="15" font-weight="400" fill="#2C2E35" text-anchor="start">a primeira tentativa de exploração</text>
+<circle cx="32" cy="214" r="8" fill="#FFFFFF" stroke="#CD0404" stroke-width="4"/>
+<text x="54" y="204" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,'DejaVu Sans Mono','Liberation Mono',monospace" font-size="14" font-weight="800" fill="#CD0404" text-anchor="start">20/10 ~15:00</text>
+<text x="54" y="224" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Ubuntu,'Helvetica Neue',Arial,sans-serif" font-size="15" font-weight="700" fill="#2C2E35" text-anchor="start">Os IDs dos CVEs vazam</text>
+<text x="54" y="242" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Ubuntu,'Helvetica Neue',Arial,sans-serif" font-size="15" font-weight="400" fill="#2C2E35" text-anchor="start">com CVSS 10.0 e data errada</text>
+<circle cx="32" cy="278" r="8" fill="#FFFFFF" stroke="#CD0404" stroke-width="4"/>
+<text x="54" y="268" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,'DejaVu Sans Mono','Liberation Mono',monospace" font-size="14" font-weight="800" fill="#CD0404" text-anchor="start">20/10 19:30</text>
+<text x="54" y="288" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Ubuntu,'Helvetica Neue',Arial,sans-serif" font-size="15" font-weight="700" fill="#2C2E35" text-anchor="start">PHP antecipa a release</text>
+<text x="54" y="306" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Ubuntu,'Helvetica Neue',Arial,sans-serif" font-size="15" font-weight="400" fill="#2C2E35" text-anchor="start">de 22/10 para 21/10, 14:00 UTC</text>
+<circle cx="32" cy="342" r="8" fill="#FFFFFF" stroke="#CD0404" stroke-width="4"/>
+<text x="54" y="332" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,'DejaVu Sans Mono','Liberation Mono',monospace" font-size="14" font-weight="800" fill="#CD0404" text-anchor="start">20/10 ~20:00</text>
+<text x="54" y="352" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Ubuntu,'Helvetica Neue',Arial,sans-serif" font-size="15" font-weight="700" fill="#2C2E35" text-anchor="start">Calif publica por engano</text>
+<text x="54" y="370" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Ubuntu,'Helvetica Neue',Arial,sans-serif" font-size="15" font-weight="400" fill="#2C2E35" text-anchor="start">um vídeo da prova de conceito</text>
+<circle cx="32" cy="406" r="8" fill="#FFFFFF" stroke="#CD0404" stroke-width="4"/>
+<text x="54" y="396" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,'DejaVu Sans Mono','Liberation Mono',monospace" font-size="14" font-weight="800" fill="#CD0404" text-anchor="start">21/10 07:34</text>
+<text x="54" y="416" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Ubuntu,'Helvetica Neue',Arial,sans-serif" font-size="15" font-weight="700" fill="#2C2E35" text-anchor="start">Patchstack relata incidentes</text>
+<text x="54" y="434" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Ubuntu,'Helvetica Neue',Arial,sans-serif" font-size="15" font-weight="400" fill="#2C2E35" text-anchor="start">de exploração em hospedagens</text>
+<circle cx="32" cy="470" r="8" fill="#FFFFFF" stroke="#CD0404" stroke-width="4"/>
+<text x="54" y="460" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,'DejaVu Sans Mono','Liberation Mono',monospace" font-size="14" font-weight="800" fill="#CD0404" text-anchor="start">21/10 07:41</text>
+<text x="54" y="480" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Ubuntu,'Helvetica Neue',Arial,sans-serif" font-size="15" font-weight="700" fill="#2C2E35" text-anchor="start">Chainguard quebra o embargo</text>
+<text x="54" y="498" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Ubuntu,'Helvetica Neue',Arial,sans-serif" font-size="15" font-weight="400" fill="#2C2E35" text-anchor="start">publicando imagens já corrigidas</text>
+<circle cx="32" cy="534" r="8" fill="#FFFFFF" stroke="#3F51B5" stroke-width="4"/>
+<text x="54" y="524" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,'DejaVu Sans Mono','Liberation Mono',monospace" font-size="14" font-weight="800" fill="#3F51B5" text-anchor="start">21/10 13:34</text>
+<text x="54" y="544" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Ubuntu,'Helvetica Neue',Arial,sans-serif" font-size="15" font-weight="700" fill="#2C2E35" text-anchor="start">Advisories e releases saem:</text>
+<text x="54" y="562" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Ubuntu,'Helvetica Neue',Arial,sans-serif" font-size="15" font-weight="400" fill="#2C2E35" text-anchor="start">8.5.12, 8.4.27, 8.3.36, 8.2.35</text>
+<circle cx="32" cy="598" r="8" fill="#FFFFFF" stroke="#3F51B5" stroke-width="4"/>
+<text x="54" y="588" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,'DejaVu Sans Mono','Liberation Mono',monospace" font-size="14" font-weight="800" fill="#3F51B5" text-anchor="start">25/10 15:47</text>
+<text x="54" y="608" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Ubuntu,'Helvetica Neue',Arial,sans-serif" font-size="15" font-weight="700" fill="#2C2E35" text-anchor="start">Servidor sem patch invadido</text>
+<text x="54" y="626" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Ubuntu,'Helvetica Neue',Arial,sans-serif" font-size="15" font-weight="400" fill="#2C2E35" text-anchor="start">no desafio “Steal My Bitcoin”</text>
+<circle cx="32" cy="662" r="8" fill="#FFFFFF" stroke="#3F51B5" stroke-width="4"/>
+<text x="54" y="652" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,'DejaVu Sans Mono','Liberation Mono',monospace" font-size="14" font-weight="800" fill="#3F51B5" text-anchor="start">26/10</text>
+<text x="54" y="672" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Ubuntu,'Helvetica Neue',Arial,sans-serif" font-size="15" font-weight="700" fill="#2C2E35" text-anchor="start">CISA coloca os dois CVEs</text>
+<text x="54" y="690" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Ubuntu,'Helvetica Neue',Arial,sans-serif" font-size="15" font-weight="400" fill="#2C2E35" text-anchor="start">no catálogo KEV</text>
+<circle cx="32" cy="726" r="8" fill="#FFFFFF" stroke="#3F51B5" stroke-width="4"/>
+<text x="54" y="716" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,'DejaVu Sans Mono','Liberation Mono',monospace" font-size="14" font-weight="800" fill="#3F51B5" text-anchor="start">29/10</text>
+<text x="54" y="736" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Ubuntu,'Helvetica Neue',Arial,sans-serif" font-size="15" font-weight="700" fill="#2C2E35" text-anchor="start">Unit 42: PAN-OS explorado,</text>
+<text x="54" y="754" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Ubuntu,'Helvetica Neue',Arial,sans-serif" font-size="15" font-weight="400" fill="#2C2E35" text-anchor="start">encadeado com bug do kernel até root</text>
+</svg>
