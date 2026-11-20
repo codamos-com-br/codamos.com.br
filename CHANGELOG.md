@@ -2,6 +2,36 @@
 
 Todas as alterações relevantes deste projeto estão documentadas neste arquivo.
 
+## 2026-11-20
+
+- **Novo post `php2shell-historia-completa-falhas-php`:** adicionado em
+  `src/data/posts.json` (postId 82, autor `nawarian`, tags `php` e `tecnica`) o
+  artigo "PHP2Shell e o que veio depois: a história completa das falhas críticas do
+  PHP (e o que fazer agora)". Parte do artigo da NMDY (note.com, 20/11/2026) e conta a
+  história completa: o PHP2Shell de outubro (CVE-2026-109618 e CVE-2026-109619), o
+  aviso de 23/10 sobre o serializer de sessão (CVE-2026-115560) e a release de 19/11
+  com 17 CVEs, 7 críticos. Traz plano de ação, análise por cenário, mitigações com
+  custo e as divergências entre as fontes, com canonical absoluta autorreferente.
+- **Capa do post `php2shell-historia-completa-falhas-php`:** criada no estilo das
+  capas anteriores (linha do tempo da saga com 21/10, 23/10 e 19/11, logo CAMARADEV e
+  wordmark) em `public/media/posts/82/`, com original 1280×720 e variantes
+  `xs`/`sm`/`md`/`lg`/`xl`/`2xl` em `responsive/`. Escolhida entre três opções
+  apresentadas no PR.
+- **Revisão do post `php2shell-historia-completa-falhas-php`:**
+  - Fontes linkadas no próprio texto, em vez de uma seção "Referências" no fim. Todo
+    CVE aparece com o ID canônico completo (ex.: CVE-2026-126714) e link para o NVD.
+  - Afirmações que vinham da Wikipedia foram conferidas nas fontes originais (Calif,
+    Wiz, PHP Foundation, Scherzer, BleepingComputer, Recorded Future, The Register,
+    NBC, ITmedia, CP24, NCSC). As que não se confirmaram foram removidas, e as
+    paralisações de Umamusume e Granblue foram movidas de outubro para 19/11.
+  - A linha do tempo do vazamento virou ilustração SVG
+    (`public/media/posts/82/php2shell-linha-do-tempo*.svg`), com versão desktop e
+    mobile servidas via `<picture>`.
+  - Removida a seção "Isso me afeta?". "O que eu acho disso tudo" virou "Conclusão",
+    com subtítulo sobre a velocidade de lançamento das correções.
+  - Adicionada menção à consultoria do autor para atualização segura de versões do PHP.
+  - Ajustes de estilo: nenhuma frase termina em "tu"; usa-se "você".
+
 ## 2026-11-19
 
 - **Novo post `nginx2root-cves-nginx-o-que-fazer`:** adicionado em
