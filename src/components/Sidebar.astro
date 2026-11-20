@@ -56,7 +56,7 @@ const featured = await getFeaturedPosts(SITE.featuredPostsNumber);
                     <img
                       src={post.data.featuredImage.src}
                       loading="lazy"
-                      alt={post.data.featuredImage.alt}
+                      alt={post.data.featuredImage.alt || post.data.title}
                     />
                   </a>
                 )}

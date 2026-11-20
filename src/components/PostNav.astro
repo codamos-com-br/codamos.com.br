@@ -10,7 +10,13 @@ const xs = (p: Post) => p.data.featuredImage?.src;
     prev && (
       <div class="post__nav__prev">
         <a href={`/${prev.data.slug}/`} class="post__nav__link" rel="prev">
-          {xs(prev) && <img src={xs(prev)} loading="lazy" alt={prev.data.featuredImage!.alt} />}
+          {xs(prev) && (
+            <img
+              src={xs(prev)}
+              loading="lazy"
+              alt={prev.data.featuredImage!.alt || prev.data.title}
+            />
+          )}
           <div class="u-small">
             Anterior
             <h5>{prev.data.title}</h5>
@@ -27,7 +33,13 @@ const xs = (p: Post) => p.data.featuredImage?.src;
             Próximo
             <h5>{next.data.title}</h5>
           </div>
-          {xs(next) && <img src={xs(next)} loading="lazy" alt={next.data.featuredImage!.alt} />}
+          {xs(next) && (
+            <img
+              src={xs(next)}
+              loading="lazy"
+              alt={next.data.featuredImage!.alt || next.data.title}
+            />
+          )}
         </a>
       </div>
     )

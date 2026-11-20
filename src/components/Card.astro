@@ -27,7 +27,7 @@ const img = data.featuredImage;
             srcset={img.srcset ?? undefined}
             sizes={img.sizes ?? undefined}
             loading="lazy"
-            alt={img.alt}
+            alt={img.alt || data.title}
           />
         </a>
       )

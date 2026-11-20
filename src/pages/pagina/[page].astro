@@ -4,7 +4,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import PostGrid from '../../components/PostGrid.astro';
 import Sidebar from '../../components/Sidebar.astro';
 import { getListablePosts } from '../../lib/content';
-import { SITE, META, fillTemplate } from '../../lib/site';
+import { SITE, META, fillTemplate, paginatedTitle, paginatedDescription } from '../../lib/site';
 
 export const getStaticPaths = (async () => {
   const all = await getListablePosts();
@@ -36,13 +36,13 @@ const nextUrl = page < totalPages ? `/${SITE.pageName}/${page + 1}/` : undefined
 ---
 
 <BaseLayout
-  title={fillTemplate(META.siteTitle, {})}
-  description="Codamos: blogs sobre desenvolvimento de software."
+  title={paginatedTitle(fillTemplate(META.siteTitle, {}), page)}
+  description={paginatedDescription(SITE.description, page)}
   robots={META.robotsSite}
   canonical={`/${SITE.pageName}/${page}/`}
   prevUrl={prevUrl}
   nextUrl={nextUrl}
 >
-  <PostGrid posts={posts} prevUrl={prevUrl} nextUrl={nextUrl} />
+  <PostGrid posts={posts} firstIsH1 prevUrl={prevUrl} nextUrl={nextUrl} />
   <Sidebar />
 </BaseLayout>

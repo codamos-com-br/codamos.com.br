@@ -13,7 +13,11 @@ const { posts } = Astro.props as { posts: Post[] };
         <figure class="post__related-item">
           {post.data.featuredImage?.src && (
             <a href={`/${post.data.slug}/`} class="c-card__image">
-              <img src={post.data.featuredImage.src} loading="lazy" alt={post.data.featuredImage.alt} />
+              <img
+                src={post.data.featuredImage.src}
+                loading="lazy"
+                alt={post.data.featuredImage.alt || post.data.title}
+              />
             </a>
           )}
           <figcaption>

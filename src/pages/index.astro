@@ -10,15 +10,39 @@ const posts = all.slice(0, SITE.postsPerPage);
 const lastUpdate = all[0]?.data.updated;
 const totalPages = Math.ceil(all.length / SITE.postsPerPage);
 const nextUrl = totalPages > 1 ? `/${SITE.pageName}/2/` : undefined;
+
+const siteUrl = `${SITE.domain}/`;
+const jsonLd = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'WebSite',
+    '@id': `${siteUrl}#website`,
+    name: SITE.displayName,
+    url: siteUrl,
+    description: SITE.description,
+    inLanguage: 'pt-BR',
+    publisher: { '@id': `${siteUrl}#organization` },
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'Organization',
+    '@id': `${siteUrl}#organization`,
+    name: SITE.displayName,
+    url: siteUrl,
+    logo: new URL(SITE.logo, SITE.domain).href,
+    sameAs: Object.values(SITE.social),
+  },
+];
 ---
 
 <BaseLayout
   title={fillTemplate(META.siteTitle, {})}
-  description="Codamos: blogs sobre desenvolvimento de software."
+  description={SITE.description}
   robots={META.robotsSite}
   ogType="website"
   nextUrl={nextUrl}
   lastUpdate={lastUpdate}
+  jsonLd={jsonLd}
 >
   <PostGrid posts={posts} firstIsH1 nextUrl={nextUrl} />
   <Sidebar />

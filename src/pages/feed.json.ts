@@ -33,7 +33,7 @@ export async function GET(_context: APIContext) {
     title: SITE.displayName,
     home_page_url: SITE.domain + '/',
     feed_url: new URL('/feed.json', SITE.domain).href,
-    description: 'Codamos: blogs sobre desenvolvimento de software.',
+    description: SITE.description,
     language: 'pt-br',
     items,
   };

@@ -45,6 +45,10 @@ const title = d.metaTitle || fillTemplate(META.postTitle, { posttitle: d.title }
 const description = d.metaDesc || d.excerpt;
 const robots = d.metaRobots || META.robotsPost;
 const ogImage = d.featuredImage?.src ?? SITE.ogImage;
+const imageAlt = d.featuredImage?.alt || d.title;
+const tagNames = (await Promise.all(d.tags.map((t) => getTag(t))))
+  .filter((t): t is NonNullable<typeof t> => Boolean(t))
+  .map((t) => t.data.name);
 
 const jsonLd = {
   '@context': 'https://schema.org',
@@ -52,15 +56,24 @@ const jsonLd = {
   headline: d.title,
   description,
   url: postUrl,
+  inLanguage: 'pt-BR',
   datePublished: d.date.toISOString(),
   dateModified: d.updated.toISOString(),
-  ...(d.featuredImage?.src
-    ? { image: new URL(d.featuredImage.src, SITE.domain).href }
+  image: new URL(ogImage, SITE.domain).href,
+  ...(tagNames.length ? { keywords: tagNames.join(', ') } : {}),
+  ...(author
+    ? {
+        author: {
+          '@type': 'Person',
+          name: author.data.name,
+          url: new URL(`/autor/${author.data.username}/`, SITE.domain).href,
+        },
+      }
     : {}),
-  ...(author ? { author: { '@type': 'Person', name: author.data.name } } : {}),
   publisher: {
     '@type': 'Organization',
     name: SITE.displayName,
+    url: `${SITE.domain}/`,
     logo: { '@type': 'ImageObject', url: new URL(SITE.logo, SITE.domain).href },
   },
   mainEntityOfPage: { '@type': 'WebPage', '@id': postUrl },
@@ -74,6 +87,7 @@ const jsonLd = {
   canonical={canonical}
   ogType="article"
   image={ogImage}
+  imageAlt={imageAlt}
   withGalleryCss={hasGallery}
   publishedTime={d.date.toISOString()}
   modifiedTime={d.updated.toISOString()}
@@ -90,7 +104,8 @@ const jsonLd = {
               srcset={d.featuredImage.srcset ?? undefined}
               sizes={d.featuredImage.sizes ?? undefined}
               loading="eager"
-              alt={d.featuredImage.alt}
+              fetchpriority="high"
+              alt={imageAlt}
             />
             {(d.featuredImage.caption || d.featuredImage.credits) && (
               <figcaption>
