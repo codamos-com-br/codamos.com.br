@@ -4,7 +4,13 @@ import BaseLayout from '../../../../layouts/BaseLayout.astro';
 import Listing from '../../../../components/Listing.astro';
 import Sidebar from '../../../../components/Sidebar.astro';
 import { getNonEmptyTags, getPostsByTag, type Tag } from '../../../../lib/content';
-import { SITE, META, fillTemplate } from '../../../../lib/site';
+import {
+  SITE,
+  META,
+  fillTemplate,
+  paginatedTitle,
+  paginatedDescription,
+} from '../../../../lib/site';
 
 export const getStaticPaths = (async () => {
   const tags = await getNonEmptyTags();
@@ -43,8 +49,11 @@ const nextUrl = page < totalPages ? `${base}/${SITE.pageName}/${page + 1}/` : un
 ---
 
 <BaseLayout
-  title={fillTemplate(META.tagTitle, { tagname: tag.data.name })}
-  description={tag.data.description || `Artigos sobre ${tag.data.name}.`}
+  title={paginatedTitle(fillTemplate(META.tagTitle, { tagname: tag.data.name }), page)}
+  description={paginatedDescription(
+    tag.data.description || `Artigos sobre ${tag.data.name}.`,
+    page,
+  )}
   robots={META.robotsTags}
   canonical={`${base}/${SITE.pageName}/${page}/`}
   prevUrl={prevUrl}

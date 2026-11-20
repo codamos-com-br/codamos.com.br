@@ -10,7 +10,7 @@ export async function GET(context: APIContext) {
 
   return rss({
     title: SITE.displayName,
-    description: 'Codamos: blogs sobre desenvolvimento de software.',
+    description: SITE.description,
     site,
     items: posts.map((post) => ({
       title: post.data.title,

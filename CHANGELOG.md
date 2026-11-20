@@ -4,6 +4,34 @@ Todas as alterações relevantes deste projeto estão documentadas neste arquivo
 
 ## 2026-11-20
 
+- **Auditoria técnica de SEO:** correções aplicadas a partir de uma varredura do
+  `dist/` gerado pelo build:
+  - **Sitemap:** cada URL de post agora tem `<lastmod>` (campo `updated`), e a
+    homepage e as paginações usam a data do post mais recente. Posts com meta robots
+    `noindex` (hoje, `como-funciona-javascript-motor-v8`) saem do sitemap, porque
+    listar uma URL que pede para não ser indexada é um sinal contraditório.
+  - **Paginação:** as páginas 2..N da homepage, dos autores e dos temas repetiam o
+    título e a descrição da página 1. Agora elas recebem "Página N". As páginas
+    `/pagina/N/` também passam a ter um `<h1>`, como a homepage já tinha.
+  - **Meta descriptions:** cortadas em até 160 caracteres em limite de palavra, com
+    reticências (`metaDescription` em `src/lib/site.ts`). Os excerpts importados do
+    Publii eram cortados em 200 caracteres no meio da palavra ("…descrito ").
+  - **Descrição do site:** a homepage e os feeds RSS/JSON trocam "Codamos: blogs
+    sobre desenvolvimento de software." por uma descrição dos temas cobertos
+    (`SITE.description`).
+  - **Dados estruturados:** a homepage ganha `WebSite` + `Organization`, e as páginas
+    de autor ganham `ProfilePage`/`Person`. O `BlogPosting` dos posts passa a ter
+    `inLanguage`, `keywords` (tags), URL do autor, URL do publisher e imagem
+    padrão quando o post não tem capa.
+  - **Imagens:** as capas sem texto alternativo usam o título do post como `alt` nos
+    cards, no post, na navegação, nos relacionados e no sidebar. Adicionados
+    `og:image:alt`/`twitter:image:alt`, e `fetchpriority="high"` na capa do post
+    (elemento LCP).
+  - **Conteúdo (`src/data/posts.json`):** corrigido link interno quebrado para
+    `/ambiente-de-desenvolvimento-rust.html#rustfmt`, removido o `nofollow` de dois
+    links internos, corrigido o link relativo `twitter.com/isanortontech` (virava
+    404 no próprio site), e o `<h1>` duplicado no corpo de
+    `basico-sobre-iterators-rust` passou a ser `<h2>`.
 - **Novo post `php2shell-historia-completa-falhas-php`:** adicionado em
   `src/data/posts.json` (postId 82, autor `nawarian`, tags `php` e `tecnica`) o
   artigo "PHP2Shell e o que veio depois: a história completa das falhas críticas do

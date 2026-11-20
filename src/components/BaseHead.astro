@@ -3,7 +3,7 @@
  * <head> for every page — SEO/metadata parity with Publii head.hbs (#10),
  * plus head-level third-party integrations (#12) and theme-color (metaTabColors).
  */
-import { SITE } from '../lib/site';
+import { SITE, metaDescription } from '../lib/site';
 import '../styles/theme.css';
 import '../styles/overrides.css';
 
@@ -14,6 +14,7 @@ export interface Props {
   canonical?: string; // absolute or path; defaults to current URL
   ogType?: 'website' | 'article';
   image?: string; // path or absolute
+  imageAlt?: string;
   prevUrl?: string;
   nextUrl?: string;
   withGalleryCss?: boolean;
@@ -25,11 +26,12 @@ export interface Props {
 
 const {
   title,
-  description = '',
+  description: rawDescription = '',
   robots = 'index, follow',
   canonical,
   ogType = 'website',
   image,
+  imageAlt,
   prevUrl,
   nextUrl,
   withGalleryCss = false,
@@ -44,6 +46,9 @@ const abs = (p?: string) =>
 
 const canonicalUrl = abs(canonical) ?? new URL(Astro.url.pathname, SITE.domain).href;
 const ogImage = abs(image ?? SITE.ogImage);
+const ogImageAlt = image ? imageAlt : SITE.displayName;
+// Corta em limite de palavra (≤160) para não exibir frase truncada no SERP.
+const description = rawDescription ? metaDescription(rawDescription) : '';
 ---
 
 <meta charset="utf-8" />
@@ -73,6 +78,7 @@ const ogImage = abs(image ?? SITE.ogImage);
 <meta property="og:url" content={canonicalUrl} />
 <meta property="og:locale" content={SITE.locale} />
 {ogImage && <meta property="og:image" content={ogImage} />}
+{ogImage && ogImageAlt && <meta property="og:image:alt" content={ogImageAlt} />}
 {ogType === 'article' && publishedTime && <meta property="article:published_time" content={publishedTime} />}
 {ogType === 'article' && modifiedTime && <meta property="article:modified_time" content={modifiedTime} />}
 {ogType === 'article' && author && <meta property="article:author" content={author} />}
@@ -83,6 +89,7 @@ const ogImage = abs(image ?? SITE.ogImage);
 <meta name="twitter:title" content={title} />
 {description && <meta name="twitter:description" content={description} />}
 {ogImage && <meta name="twitter:image" content={ogImage} />}
+{ogImage && ogImageAlt && <meta name="twitter:image:alt" content={ogImageAlt} />}
 
 {prevUrl && <link rel="prev" href={abs(prevUrl)} />}
 {nextUrl && <link rel="next" href={abs(nextUrl)} />}

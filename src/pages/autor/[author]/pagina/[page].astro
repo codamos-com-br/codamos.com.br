@@ -5,7 +5,13 @@ import Listing from '../../../../components/Listing.astro';
 import AuthorHeader from '../../../../components/AuthorHeader.astro';
 import Sidebar from '../../../../components/Sidebar.astro';
 import { getNonEmptyAuthors, getPostsByAuthor, type Author } from '../../../../lib/content';
-import { SITE, META, fillTemplate } from '../../../../lib/site';
+import {
+  SITE,
+  META,
+  fillTemplate,
+  paginatedTitle,
+  paginatedDescription,
+} from '../../../../lib/site';
 
 export const getStaticPaths = (async () => {
   const authors = await getNonEmptyAuthors();
@@ -47,8 +53,11 @@ const description =
 ---
 
 <BaseLayout
-  title={author.data.metaTitle || fillTemplate(META.authorTitle, { authorname: author.data.name })}
-  description={description}
+  title={paginatedTitle(
+    author.data.metaTitle || fillTemplate(META.authorTitle, { authorname: author.data.name }),
+    page,
+  )}
+  description={paginatedDescription(description, page)}
   robots={META.robotsAuthors}
   canonical={`${base}/${SITE.pageName}/${page}/`}
   prevUrl={prevUrl}

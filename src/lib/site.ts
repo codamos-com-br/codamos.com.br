@@ -9,6 +9,9 @@ export const SITE = {
   displayName: 'codamos.com.br',
   language: 'pt-br',
   locale: 'pt_BR',
+  // Descrição do site (homepage, paginação e feeds).
+  description:
+    'Artigos e tutoriais em português sobre desenvolvimento de software: PHP, testes, Git, Linux, C, Rust, segurança e carreira.',
 
   logo: '/media/website/codamos-logo-2.png',
   favicon: '/media/website/codamos-favicon-2.png',
@@ -73,13 +76,42 @@ export const META = {
   robotsSearch: 'noindex, follow',
 } as const;
 
-export const fillTemplate = (
-  template: string,
-  vars: Record<string, string>
-): string => {
+export const fillTemplate = (template: string, vars: Record<string, string>): string => {
   let out = template.replace(/%sitename/g, SITE.name);
   for (const [key, value] of Object.entries(vars)) {
     out = out.replace(new RegExp(`%${key}`, 'g'), value);
   }
   return out.trim();
+};
+
+/**
+ * Sufixo de paginação para títulos/descrições: páginas 2..N de uma listagem
+ * não podem repetir o título e a descrição da página 1 (conteúdo duplicado).
+ * Insere "Página N" antes do " - <nome do site>" final.
+ */
+export const paginatedTitle = (title: string, page: number): string => {
+  if (page <= 1) return title;
+  const suffix = ` - ${SITE.name}`;
+  return title.endsWith(suffix)
+    ? `${title.slice(0, -suffix.length)} - Página ${page}${suffix}`
+    : `${title} - Página ${page}`;
+};
+
+export const paginatedDescription = (description: string, page: number): string => {
+  if (page <= 1) return description;
+  const base = description.trim();
+  return `${base}${/[.!?…]$/.test(base) ? '' : '.'} Página ${page}.`;
+};
+
+/**
+ * Meta description com no máximo `max` caracteres, cortada em limite de
+ * palavra. Muitos excerpts importados do Publii foram cortados em 200
+ * caracteres no meio da palavra ("…descrito ", "Esta form").
+ */
+export const metaDescription = (text: string, max = 160): string => {
+  const clean = text.replace(/\s+/g, ' ').trim();
+  if (clean.length <= max) return clean;
+  const cut = clean.slice(0, max - 1);
+  const lastSpace = cut.lastIndexOf(' ');
+  return `${(lastSpace > max * 0.6 ? cut.slice(0, lastSpace) : cut).replace(/[\s,;:.\-–—]+$/, '')}…`;
 };
