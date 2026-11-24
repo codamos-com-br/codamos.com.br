@@ -2,6 +2,18 @@
 
 Todas as alterações relevantes deste projeto estão documentadas neste arquivo.
 
+## 2026-11-24
+
+- **Novo post `agentes-de-codigo-em-reais-apiario`:** adicionado em
+  `src/data/posts.json` (postId 83, autor `nawarian`, tags `ferramentas`,
+  `produtividade`, `tecnica` e `carreira`) o artigo "Agentes de código sem assinatura
+  em dólar: pré-pago, em reais e no seu ritmo". O texto fala com quem já usa agentes
+  de código e apresenta o Apiário (https://apiario.dev) como alternativa pré-paga em
+  reais: os problemas dos planos por assinatura estrangeiros (plano curto ou caro
+  demais, IOF, câmbio, tarifas do cartão, cobrança esquecida), tabela de preços com
+  cache consultada em 24/11/2026, privacidade e links para os tutoriais do blog do
+  Apiário. Capa nova em `public/media/posts/83/` com as seis variações responsivas.
+
 ## 2026-11-20
 
 - **Auditoria técnica de SEO:** correções aplicadas a partir de uma varredura do
